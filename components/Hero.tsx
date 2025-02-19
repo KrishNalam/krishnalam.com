@@ -66,7 +66,7 @@ const Hero = () => {
 						<a href='https://github.com/koolkrish18' target='_blank'>
 							<MagicButton icon={<FaGithub />} />
 						</a>
-						<a href='https://linkedin.com/krish-nalam' target='_blank'>
+						<a href='https://linkedin.com/in/krish-nalam' target='_blank'>
 							<MagicButton icon={<FaLinkedin />} />
 						</a>
 						<a href='https://devpost.com/nalamkrish1' target='_blank'>

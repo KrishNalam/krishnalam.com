@@ -11,8 +11,7 @@ const Clients = () => {
 			</h1>
 			<div className='flex flex-col items-center max-lg:mt-10'>
 				{testimonials.map(({ title, content }) => (
-					// eslint-disable-next-line react/jsx-key
-					<Timeline data={[{ title, content }]} />
+					<Timeline data={[{ title, content }]} key={title} />
 				))}
 			</div>
 		</div>
