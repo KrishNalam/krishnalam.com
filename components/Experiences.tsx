@@ -1,8 +1,8 @@
 import React from 'react';
-import { InfiniteMovingCards } from './ui/infinite-moving-cards';
-import { Timeline } from './ui/timeline';
+import { InfiniteMovingCards } from './ui/infinite-moving-cards.tsx';
+import { Timeline } from './ui/timeline.tsx';
 import { testimonials } from '../data/index.tsx';
-const Clients = () => {
+const Experience = () => {
 	return (
 		<div className='py-20' id='testimonials'>
 			<h1 className='heading'>
@@ -18,4 +18,4 @@ const Clients = () => {
 	);
 };
 
-export default Clients;
+export default Experience;

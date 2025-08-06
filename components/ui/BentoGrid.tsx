@@ -43,7 +43,7 @@ export const BentoGridItem = ({
 }) => {
 	const [copied, setCopied] = useState(false);
 	const handleCopy = () => {
-		navigator.clipboard.writeText('nalamkrish1@gmail.com');
+		navigator.clipboard.writeText('dev@krishnalam.com');
 
 		setCopied(true);
 	};
@@ -95,7 +95,11 @@ export const BentoGridItem = ({
 					</div>
 					<div className='font-sans font-bold text-lg lg:text-3xl max-w-96 z-10'>{title}</div>
 
-					{id === 2 && <GlobeDemo />}
+					{id === 2 && (
+						<div className='absolute inset-0 z-0 pointer-events-none'>
+							<GlobeDemo />
+						</div>
+					)}
 					{id === 3 && (
 						<div className='flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2'>
 							<div className='flex flex-col gap-3 lg:gap-8'>
@@ -139,7 +143,7 @@ export const BentoGridItem = ({
 							</div>
 
 							<MagicButton
-								title={copied ? 'Email copied' : 'Copy my email'}
+								title={copied ? 'Email Copied' : 'Copy Email'}
 								icon={<IoCopyOutline />}
 								otherClasses='bg-[#161a31'
 								handleClick={handleCopy}
