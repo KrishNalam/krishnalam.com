@@ -8,6 +8,7 @@ import { useState } from 'react';
 import animationData from '@/data/confetti.json';
 import MagicButton from './MagicButton';
 import { IoCopyOutline } from 'react-icons/io5';
+import { FaUpRightFromSquare } from 'react-icons/fa6';
 
 export const BentoGrid = ({ className, children }: { className?: string; children?: React.ReactNode }) => {
 	return (
@@ -93,7 +94,27 @@ export const BentoGridItem = ({
 					<div className='font-sans font-extralight text-[#c1c2d3] text-sm md:text-xs lg:text-base z-10'>
 						{description}
 					</div>
-					<div className='font-sans font-bold text-lg lg:text-3xl max-w-96 z-10'>{title}</div>
+					<div className='font-sans font-bold text-lg lg:text-3xl max-w-96 z-10'>
+						{id === 4 && typeof title === 'string' ? (
+							<>
+								{title.slice(0, 20)}
+								<a
+									href='https://github.com/KrishNalam/Project-Delphi'
+									target='_blank'
+									rel='noopener noreferrer'
+									className='inline-flex items-center text-blue-400 italic backdrop-blur-sm'
+								>
+									<div className='flex items-center gap-3'>
+										<span>{title.slice(20, 36)}</span>
+										<FaUpRightFromSquare className='text-2xl' />
+									</div>
+								</a>
+								{title.slice(36)}
+							</>
+						) : (
+							title
+						)}
+					</div>
 
 					{id === 2 && (
 						<div className='absolute inset-0 z-0 pointer-events-none'>

@@ -15,8 +15,8 @@ export const gridItems = [
 		className: 'lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]',
 		imgClassName: 'w-full h-full',
 		titleClassName: 'justify-end',
-		img: '/b1-modified.png',
-		spareImg: '',
+		img: '/b1.png',
+		spareImg: '/grid.svg',
 	},
 	{
 		id: 2,
@@ -40,8 +40,8 @@ export const gridItems = [
 	},
 	{
 		id: 4,
-		title: 'My hobbies include 3D designing, gaming & watching movies. ',
-		description: '',
+		title: 'Currently working on Project Delphi  Stay tuned!',
+		description: 'The Inside Scoop',
 		className: 'lg:col-span-2 md:col-span-3 md:row-span-1',
 		imgClassName: '',
 		titleClassName: 'justify-start',
@@ -51,13 +51,13 @@ export const gridItems = [
 
 	{
 		id: 5,
-		title: 'Currently working on Project Delphi. Stay tuned!',
-		description: 'The Inside Scoop',
+		title: 'My hobbies include 3D designing, gaming & watching movies.',
+		description: '',
 		className: 'md:col-span-3 md:row-span-2',
 		imgClassName: 'absolute right-0 bottom-0 md:w-96 w-60',
 		titleClassName: 'justify-center md:justify-start lg:justify-center',
-		img: '',
-		spareImg: '',
+		img: '/grid.svg',
+		spareImg: '/grid.svg',
 	},
 	{
 		id: 6,
