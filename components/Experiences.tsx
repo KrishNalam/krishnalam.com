@@ -1,5 +1,4 @@
 import React from 'react';
-import { InfiniteMovingCards } from './ui/infinite-moving-cards.tsx';
 import { Timeline } from './ui/timeline.tsx';
 import { testimonials } from '../data/index.tsx';
 const Experience = () => {
