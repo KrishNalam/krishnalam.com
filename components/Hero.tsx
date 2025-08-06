@@ -2,23 +2,7 @@ import React from 'react';
 import { Spotlight } from './ui/Spotlight';
 import { TextGenerateEffect } from './ui/TextGenerateEffect';
 import MagicButton from './ui/MagicButton';
-import {
-	FaEnvelope,
-	FaFile,
-	FaFileArchive,
-	FaGithub,
-	FaInstagram,
-	FaLinkedin,
-	FaLocationArrow,
-	FaRegEnvelope,
-} from 'react-icons/fa';
-import {
-	FaArrowUpRightFromSquare,
-	FaDownLong,
-	FaFileArrowUp,
-	FaSquareCaretDown,
-	FaUpRightFromSquare,
-} from 'react-icons/fa6';
+import { FaEnvelope, FaGithub, FaLinkedin, FaUpRightFromSquare } from 'react-icons/fa6';
 
 const DevpostLogo = () => {
 	return <img src='/devpost-svgrepo-com.svg' alt='Devpost Logo' className='w-10 h-10' />;
@@ -49,9 +33,6 @@ const Hero = () => {
 			</div>
 			<div className='flex justify-center relative my-20 z-10'>
 				<div className='max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center'>
-					{/* <h2 className='tracking-widest text-sm text-center text-blue-100 max-w-80'>
-                    {`if (passion === true) { code(); } `}
-                </h2> */}
 					<TextGenerateEffect
 						className='text-center text-[40px] md:text-5xl lg:text-6xl'
 						words="Hey, I'm Krish Nalam"
@@ -63,16 +44,16 @@ const Hero = () => {
 						A Full-Stack Developer & UofT Student :)
 					</p>
 					<div className='flex space-x-4'>
-						<a href='https://github.com/koolkrish18' target='_blank'>
+						<a href='https://github.com/KrishNalam' target='_blank'>
 							<MagicButton icon={<FaGithub />} />
 						</a>
-						<a href='https://linkedin.com/in/krish-nalam' target='_blank'>
+						<a href='https://linkedin.com/in/KrishNalam' target='_blank'>
 							<MagicButton icon={<FaLinkedin />} />
 						</a>
-						<a href='https://devpost.com/nalamkrish1' target='_blank'>
+						<a href='https://devpost.com/KrishNalam' target='_blank'>
 							<MagicButton icon={<DevpostLogo />} />
 						</a>
-						<a href='mailto:nalamkrish1@gmail.com' target='_blank'>
+						<a href='mailto:dev@krishnalam.com' target='_blank'>
 							<MagicButton icon={<FaEnvelope />} />
 						</a>
 						<a

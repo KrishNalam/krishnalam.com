@@ -1,5 +1,6 @@
 {
-    "search.useGlobalIgnoreFiles": true,
-    "search.useParentIgnoreFiles": true,
-    "search.useIgnoreFiles": true
+	"search.useGlobalIgnoreFiles": true,
+	"search.useParentIgnoreFiles": true,
+	"search.useIgnoreFiles": true,
+	"cSpell.words": ["Devpost"]
 }
