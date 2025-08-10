@@ -94,7 +94,7 @@ export const BentoGridItem = ({
 					<div className='font-sans font-extralight text-[#c1c2d3] text-sm md:text-xs lg:text-base z-10'>
 						{description}
 					</div>
-					<div className='font-sans font-bold text-lg lg:text-3xl max-w-96 z-10'>
+					<div className={cn('font-sans font-bold text-lg lg:text-3xl z-10', id !== 5 && 'max-w-96')}>
 						{id === 4 && typeof title === 'string' ? (
 							<>
 								{title.slice(0, 20)}
@@ -111,6 +111,27 @@ export const BentoGridItem = ({
 								</a>
 								{title.slice(36)}
 							</>
+						) : id === 5 ? (
+							<div className='flex flex-col h-full justify-start w-full'>
+								<div className='mt-2 mb-8'>{title}</div>
+								<div className='flex flex-row gap-4 mb-2 items-center'>
+									{' '}
+									{/* Increased gap */}
+									{[
+										{ src: '/movies.svg', alt: 'Watching Movies' },
+										{ src: '/printer.svg', alt: '3D Designing' },
+										{ src: '/gaming.svg', alt: 'Gaming' },
+										{ src: '/gardening.svg', alt: 'Gardening' },
+									].map(({ src, alt }) => (
+										<div key={alt} className='flex flex-col items-center group w-28 h-28'>
+											<img src={src} alt={alt} className='w-full h-full object-contain' />
+											<span className='text-xs mt-1 transition-all duration-300 transform -translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'>
+												{alt}
+											</span>
+										</div>
+									))}
+								</div>
+							</div>
 						) : (
 							title
 						)}

@@ -51,7 +51,7 @@ export const gridItems = [
 
 	{
 		id: 5,
-		title: 'My hobbies include 3D designing, gaming & watching movies.',
+		title: 'Some of my more interesting hobbies...',
 		description: '',
 		className: 'md:col-span-3 md:row-span-2',
 		imgClassName: 'absolute right-0 bottom-0 md:w-96 w-60',
