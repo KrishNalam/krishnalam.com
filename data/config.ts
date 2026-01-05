@@ -59,4 +59,24 @@ export const PROJECTS = [
 			'Built a REST API to serve analysis data to the frontend.',
 		],
 	},
+	{
+		title: 'Retro Webring',
+		url: 'https://google.com',
+		stack: ['Next.js', 'Supabase', 'Tailwind'],
+		description: 'A connected platform for student portfolios.',
+		tasks: [
+			'Designed the database schema for efficient querying.',
+			'Implemented authentication using OAuth providers.',
+		],
+	},
+	{
+		title: 'Retro Webring',
+		url: 'https://google.com',
+		stack: ['Next.js', 'Supabase', 'Tailwind'],
+		description: 'A connected platform for student portfolios.',
+		tasks: [
+			'Designed the database schema for efficient querying.',
+			'Implemented authentication using OAuth providers.',
+		],
+	},
 ];

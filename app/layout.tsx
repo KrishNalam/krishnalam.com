@@ -73,9 +73,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				</header>
 
 				{/* WORKSPACE ROW */}
-				<div className='flex flex-1 gap-8 z-10'>
+				<div className='flex flex-1 gap-8 z-10 min-h-0'>
 					{/* LEFT: Dynamic Page Content */}
-					<section className='flex-1 h-full relative'>{children}</section>
+					<section className='h-full flex-1 min-h-0 relative'>{children}</section>
 					{/* RIGHT: Navigation Sidebar */}
 					<div className='flex flex-col justify-between items-center'>
 						<DesktopNav />
