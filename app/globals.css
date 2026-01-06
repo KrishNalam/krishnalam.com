@@ -33,3 +33,17 @@ body {
 .mask-image-gradient {
 	mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
+
+@keyframes typing-dots {
+	0%,
+	100% {
+		width: 0;
+	}
+	50% {
+		width: 24px; /* Adjust roughly to fit the width of 3 dots in your font */
+	}
+}
+
+.typing-dots {
+	animation: typing-dots 2s steps(4, end) infinite;
+}

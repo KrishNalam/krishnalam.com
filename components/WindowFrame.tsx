@@ -14,10 +14,10 @@ export const WindowFrame = ({ title, children }: { title: string; children: Reac
 	>
 		{/* Pane Header */}
 		<div className='bg-[#11408c] text-white p-2 flex justify-between items-center border-b-4 border-black shrink-0'>
-			<span className='text-2xl uppercase tracking-widest pl-2 '>{title}.EXE</span>
+			<span className='text-2xl uppercase tracking-widest pl-2 drop-shadow-opaque'>{title}.EXE</span>
 			<Link
 				href='/'
-				className='bg-red-500 hover:bg-red-900 text-white p-1 border-2 border-black hover:shadow-inner flex items-center justify-center'
+				className=' hover:bg-red-800 text-white p-1 border-2 border-white hover:shadow-inner drop-shadow-opaque flex items-center justify-center'
 			>
 				<X size={20} />
 			</Link>
