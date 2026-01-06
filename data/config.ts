@@ -16,24 +16,45 @@ export const SOCIALS = [
 
 export const EXPERIENCES = [
 	{
-		title: 'Full Stack Developer',
-		company: 'Tech Corp',
+		title: 'Software Developer',
+		company: 'RBC (Royal Bank of Canada)',
 		location: 'Toronto, ON',
-		date: 'Jan 2024 - Present',
+		date: 'May 2025 - Aug 2025',
 		desc: [
-			'Built a scalable serverless architecture using AWS Lambda.',
-			'Reduced load times by 40% using Next.js optimization.',
-			'Collaborated with design teams to implement pixel-perfect UI.',
+			'Built a Java/Maven ETL pipeline modernizing RBC`s deprecated workflows, automating weekly 30GB+ transit data processing into flat files for 12+ mainframe JCL jobs, replacing SOAP with REST APIs',
+			'Implemented automated SQL stored procedures in PostgreSQL to archive historical transactional data, reducing production database size by 15% and improving query performance',
+			'Cut $100K in maintenance costs by updating RBC Express systems to ES6, ensuring full cross-browser support',
 		],
 	},
 	{
-		title: 'Software Intern',
-		company: 'Startup Inc',
-		location: 'Remote',
-		date: 'May 2023 - Aug 2023',
+		title: 'Full-Stack Developer',
+		company: 'Next Unicorn (Fintech Startup)',
+		location: 'Toronto, ON',
+		date: 'March 2025 - June 2025',
 		desc: [
-			'Refactored legacy code base to modern React standards.',
-			'Implemented automated testing using Jest and Cypress.',
+			'Reduced re-render frequency by 60% via Redux for efficient global state management and caching in React Native',
+			'Built Dockerized Node.js microservices on AWS Lambda and API Gateway integrating with MongoDB & Supabase to support up to 10k req/min; established Jenkins CI/CD pipeline',
+			'Reduced storage costs by 30% with a media storage pipeline using AWS S3 with lifecycle policies and Lambda Triggers for resizing, dynamic compression as well as CloudFront for edge caching',
+		],
+	},
+	{
+		title: 'Back-End Developer',
+		company: 'RBC (Royal Bank of Canada)',
+		location: 'Toronto, ON',
+		date: 'July 2024 - Aug 2024',
+		desc: [
+			'Benchmarked SARIMA against TensorFlow models in Jupyter with RMSE to optimize login traffic forecast accuracy',
+			'Operationalized the winning model to automate resource allocation, cutting workload by 30%, saving $360K annually',
+		],
+	},
+	{
+		title: 'Software Engineer',
+		company: 'RBC (Royal Bank of Canada)',
+		location: 'Toronto, ON',
+		date: 'July 2023 - Aug 2023',
+		desc: [
+			'Boosted test coverage to 95% for RBC’s Visa Rewards by automating key tests with Docker, Java, & ReadyAPI',
+			'Improved API test reliability 25% with a WireMock & Postman mock API suite, reducing UAT and production issues',
 		],
 	},
 ];

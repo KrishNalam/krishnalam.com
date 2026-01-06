@@ -23,6 +23,6 @@ export const WindowFrame = ({ title, children }: { title: string; children: Reac
 			</Link>
 		</div>
 		{/* Scrollable Content */}
-		<div className='flex flex-col p-6 overflow-y-auto text-lg custom-scrollbar'>{children}</div>
+		<div className='flex flex-col overflow-y-auto text-lg custom-scrollbar'>{children}</div>
 	</div>
 );

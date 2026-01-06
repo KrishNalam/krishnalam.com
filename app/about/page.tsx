@@ -47,7 +47,7 @@ export default function AboutPage() {
 	return (
 		<WindowFrame title='ABOUT_ME'>
 			{/* Main Bento Grid Wrapper */}
-			<div className='grid grid-cols-8 grid-rows-5 gap-4 h-full'>
+			<div className='grid grid-cols-8 grid-rows-5 gap-4 h-full p-6'>
 				{/* --- 1. BIO CARD (Top Left - Big) --- */}
 				<div className='col-span-5 row-span-3 relative  p-6 shadow-translucent flex flex-row justify-between overflow-hidden bg-white'>
 					<div className='relative flex flex-col flex-1 pr-6 pb-6'>
