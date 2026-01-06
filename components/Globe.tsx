@@ -32,7 +32,7 @@ export const Globe = ({
 		if (!canvasRef.current) return;
 
 		const globe = createGlobe(canvasRef.current, {
-			devicePixelRatio: 2.15,
+			devicePixelRatio: 2.28,
 			width: width,
 			height: width,
 			phi: 0,

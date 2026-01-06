@@ -24,7 +24,7 @@ const HobbyItem = ({ emoji, name }: { emoji: string; name: string }) => (
 );
 
 // --- Main Component ---
-
+//TODO: USE DOTTED LINES IN HOBBIES
 export default function AboutPage() {
 	// 2. Confetti & Copy Logic
 	const handleCopyEmail = () => {
