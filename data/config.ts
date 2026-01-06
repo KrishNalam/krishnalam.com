@@ -36,6 +36,7 @@ export const EXPERIENCES = [
 			'Built Dockerized Node.js microservices on AWS Lambda and API Gateway integrating with MongoDB & Supabase to support up to 10k req/min; established Jenkins CI/CD pipeline',
 			'Reduced storage costs by 30% with a media storage pipeline using AWS S3 with lifecycle policies and Lambda Triggers for resizing, dynamic compression as well as CloudFront for edge caching',
 		],
+		image: '/nextunicorn.png',
 	},
 	{
 		title: 'Back-End Developer',
@@ -46,6 +47,7 @@ export const EXPERIENCES = [
 			'Benchmarked SARIMA against TensorFlow models in Jupyter with RMSE to optimize login traffic forecast accuracy',
 			'Operationalized the winning model to automate resource allocation, cutting workload by 30%, saving $360K annually',
 		],
+		image: '/rbc2024.png',
 	},
 	{
 		title: 'Software Engineer',
@@ -56,6 +58,7 @@ export const EXPERIENCES = [
 			'Boosted test coverage to 95% for RBC’s Visa Rewards by automating key tests with Docker, Java, & ReadyAPI',
 			'Improved API test reliability 25% with a WireMock & Postman mock API suite, reducing UAT and production issues',
 		],
+		image: '/rbc2023.png',
 	},
 ];
 

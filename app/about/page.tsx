@@ -25,6 +25,8 @@ const HobbyItem = ({ emoji, name }: { emoji: string; name: string }) => (
 
 // --- Main Component ---
 //TODO: USE DOTTED LINES IN HOBBIES
+//TODO: ADJUST GLOBE POSITIONING
+
 export default function AboutPage() {
 	// 2. Confetti & Copy Logic
 	const handleCopyEmail = () => {
@@ -45,7 +47,7 @@ export default function AboutPage() {
 	};
 
 	return (
-		<WindowFrame title='ABOUT_ME'>
+		<WindowFrame title='> ABOUT_ME'>
 			{/* Main Bento Grid Wrapper */}
 			<div className='grid grid-cols-8 grid-rows-5 gap-4 h-full p-6'>
 				{/* --- 1. BIO CARD (Top Left - Big) --- */}
