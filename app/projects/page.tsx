@@ -4,7 +4,7 @@ import { PROJECTS } from '@/data/config';
 export default function ProjectsPage() {
 	return (
 		<WindowFrame title='PROJECT_ARCHIVE'>
-			<div className='grid grid-cols-1 gap-8'>
+			<div className='grid grid-cols-1 gap-8 p-6'>
 				{PROJECTS.map((project, index) => (
 					<div
 						key={index}

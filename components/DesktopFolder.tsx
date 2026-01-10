@@ -17,7 +17,7 @@ export const DesktopFolder = ({
 	return (
 		<Link href={href}>
 			<div
-				className={`flex flex-col items-center gap-2 cursor-pointer w-32 p-2 rounded-lg transition-colors border-2 border-transparent
+				className={`flex flex-col items-center gap-2 cursor-pointer w-32 p-2 pb-0 rounded-lg transition-colors border-2 border-transparent
         ${isActive ? 'bg-off-white border-black shadow-opaque' : 'hover:bg-white/10'}`}
 			>
 				<Icon size={76} className='transition-transform drop-shadow-opaque fill-retro-yellow' />

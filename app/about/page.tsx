@@ -15,22 +15,24 @@ const TechBadge = ({ label }: { label: string }) => (
 );
 
 const HobbyItem = ({ emoji, name }: { emoji: string; name: string }) => (
-	<div className='group relative flex flex-col items-center justify-center p-2 bg-dark-gray border-4 border-dark-gray hover:bg-light-gray transition-all cursor-help flex-4 '>
-		<span className='text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300'>{emoji}</span>
-		<span className='absolute -bottom-12 bg-black text-white text-xl px-2 py-1 border border-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 pointer-events-none'>
+	<div className='group relative flex flex-col items-center justify-center p-2 border-dashed border-4 border-light-gray hover:bg-light-gray transition-all flex-4'>
+		<span className='text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:-translate-y-3'>
+			{emoji}
+		</span>
+		<span className='absolute bottom-2 text-white text-2xl px-2 py-1 drop-shadow-opaque opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity'>
 			{name}
 		</span>
 	</div>
 );
 
 // --- Main Component ---
-//TODO: USE DOTTED LINES IN HOBBIES
 //TODO: ADJUST GLOBE POSITIONING
+//TODO: FIX CONFETTI BUTTON
 
 export default function AboutPage() {
 	// 2. Confetti & Copy Logic
 	const handleCopyEmail = () => {
-		navigator.clipboard.writeText('your.email@example.com'); // Replace with PERSONAL_INFO.email
+		navigator.clipboard.writeText('dev@krishnalam.com');
 
 		// Confetti explosion
 		const scalar = 2;
@@ -47,7 +49,7 @@ export default function AboutPage() {
 	};
 
 	return (
-		<WindowFrame title='> ABOUT_ME'>
+		<WindowFrame title='ABOUT_ME'>
 			{/* Main Bento Grid Wrapper */}
 			<div className='grid grid-cols-8 grid-rows-5 gap-4 h-full p-6'>
 				{/* --- 1. BIO CARD (Top Left - Big) --- */}
@@ -106,9 +108,9 @@ export default function AboutPage() {
 					<p className='relative z-10 text-lg mb-3 text-black'>Click it; Trust me, it does something cool.</p>
 					<button
 						onClick={handleCopyEmail}
-						className='relative z-10  text-purple-700 px-6 py-2 border border-double border-5 border-purple-700 hover:border-white hover:text-white font-bold text-3xl hover:bg-purple-700 transition-colors shadow-[0px_0px_5px_rgba(0,0,0,1)]'
+						className='relative z-10 text-purple-900 px-6 py-2 border-double border-5 border-purple-700 hover:border-white hover:text-white font-bold text-3xl hover:bg-purple-900'
 					>
-						<span className='drop-shadow-[2px_2px_1px_rgba(0,0,0,1)] flex items-center gap-2'>
+						<span className=' flex items-center gap-2'>
 							Copy Email <RiFileCopyFill />
 						</span>
 					</button>
@@ -157,11 +159,11 @@ export default function AboutPage() {
 						<span className='drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'>My Recharge Modes 🌩️</span>
 						<span className='text-lg font-normal text-dark-gray '>(Try Hovering!)</span>
 					</h3>
-					<div className='flex flex-wrap gap-4 flex-1 mb-10'>
+					<div className='flex flex-wrap gap-4 flex-1 '>
 						<HobbyItem emoji='🍿' name='Cinema Nerd' />
 						<HobbyItem emoji='🖨️' name='3D Printing' />
-						<HobbyItem emoji='🚜' name='Touching Grass (Gardening)' />
-						<HobbyItem emoji='🎮' name='Gaming' />
+						<HobbyItem emoji='🚜' name='Gardener' />
+						<HobbyItem emoji='🎮' name='Gamer' />
 					</div>
 				</div>
 			</div>

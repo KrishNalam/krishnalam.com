@@ -7,8 +7,8 @@ export const DesktopNav = () => {
 	return (
 		<nav className='flex flex-col gap-6 w-20 shrink-0 items-center pt-4'>
 			<DesktopFolder icon={RiFolderUserFill} label='ABOUT' href='/about' />
-			<DesktopFolder icon={RiFolderInfoFill} label='EXP.' href='/experience' />
-			<DesktopFolder icon={RiFolderChartFill} label='WORK' href='/projects' />
+			<DesktopFolder icon={RiFolderInfoFill} label='EXPERIENCE' href='/experience' />
+			<DesktopFolder icon={RiFolderChartFill} label='PROJECTS' href='/projects' />
 		</nav>
 	);
 };

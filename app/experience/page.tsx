@@ -32,7 +32,7 @@ export default function ExperiencePage() {
 	const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
 	return (
-		<WindowFrame title='> EXPERIENCE'>
+		<WindowFrame title='EXPERIENCE'>
 			{/* WRAPPER: Light Mode Background */}
 			<div className='relative w-full h-full bg-[#faf9f6] text-neutral-900 selection:bg-yellow-200 selection:text-black'>
 				{/* CRT SCANLINE OVERLAY */}
