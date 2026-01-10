@@ -9,10 +9,10 @@ export const PERSONAL_INFO = {
 };
 
 export const SOCIALS = [
-	{ name: 'GitHub', icon: FiGithub, url: 'https://github.com' },
-	{ name: 'LinkedIn', icon: FiLinkedin, url: 'https://linkedin.com' },
+	{ name: 'GitHub', icon: FiGithub, url: 'https://github.com/KrishNalam' },
+	{ name: 'LinkedIn', icon: FiLinkedin, url: 'https://linkedin.com/in/KrishNalam' },
 	{ name: 'Resume', icon: FiFileText, url: '/resume.pdf' },
-	{ name: 'Devpost', icon: SiDevpost, url: 'https://devpost.com' },
+	{ name: 'Devpost', icon: SiDevpost, url: 'https://devpost.com/KrishNalam' },
 ];
 
 export const EXPERIENCES = [
@@ -65,45 +65,35 @@ export const EXPERIENCES = [
 
 export const PROJECTS = [
 	{
-		title: 'Retro Webring',
-		url: 'https://google.com',
+		title: 'UofT Webring',
+		url: 'https://www.uoftwebring.com',
 		stack: ['Next.js', 'Supabase', 'Tailwind'],
-		description: 'A connected platform for student portfolios.',
+		description: 'A connected platform that showcases the portfolios of UofT students in one network.',
 		tasks: [
-			'Designed the database schema for efficient querying.',
-			'Implemented authentication using OAuth providers.',
+			'Implemented serverless media pipeline using AWS S3 with presigned URLs for secure uploads, CloudFront for edge caching, and Supabase for metadata management; automated image resizing with Lambda triggers',
+			'Developed a scalable, serverless mass mailing workflow with AWS SES & Lambda, sending 10K+ emails per user with automated scaling and 99% delivery success',
 		],
 	},
 	{
-		title: 'AI Fitness Tracker',
-		url: 'https://github.com',
+		title: 'FITRIS',
+		url: 'https://github.com/yuvibirdi/fitris',
 		stack: ['Python', 'OpenCV', 'React'],
-		description: 'Tracks exercise movements using computer vision.',
+		description: 'An interactive fitness game that maps real-world exercises to Tetris controls.',
 		tasks: [
-			'Integrated MediaPipe for real-time joint tracking.',
-			'Built a REST API to serve analysis data to the frontend.',
+			'Developed a React front end, creating a responsive user interface, and built a Flask API back end using NumPy for movement detection and precise body joint tracking',
+			'Used MediaPipe & OpenCV to classify 5+ exercises with 90% detection accuracy',
 		],
 	},
 	{
-		title: 'Retro Webring',
-		url: 'https://google.com',
+		title: 'DevDuels',
+		url: 'https://github.com/m-shao/hack-the-valley',
 		stack: ['Next.js', 'Supabase', 'Tailwind'],
-		description: 'A connected platform for student portfolios.',
+		description:
+			'A web-based game that encourages effective code reviews through competition and real-time AI feedback.',
 		tasks: [
-			'Designed the database schema for efficient querying.',
-			'Implemented authentication using OAuth providers.',
+			'Built a responsive front end with Next.js & Tailwind CSS, using lazy loading and code splitting and efficient rendering',
+			'Engineered the back end with MongoDB & GitHub API for authentication, data storage, and user integration',
+			'Implemented context-aware feedback using embeddings and RAG via LangChain, semantically analyzing code',
 		],
-	},
-	{
-		title: 'Retro Webring',
-		url: 'https://google.com',
-		stack: ['Next.js', 'Supabase', 'Tailwind'],
-		description: 'A connected platform for student portfolios.',
-		tasks: [
-			'Designed the database schema for efficient querying.',
-			'Implemented authentication using OAuth providers.',
-		],
-		image: '/nextunicorn.png',
-		award: '1st Place - HackUofT 2023',
 	},
 ];
