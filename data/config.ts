@@ -1,3 +1,4 @@
+import { image } from 'framer-motion/client';
 import { FiGithub, FiLinkedin, FiFileText } from 'react-icons/fi';
 import { SiDevpost } from 'react-icons/si';
 
@@ -102,5 +103,7 @@ export const PROJECTS = [
 			'Designed the database schema for efficient querying.',
 			'Implemented authentication using OAuth providers.',
 		],
+		image: '/nextunicorn.png',
+		award: '1st Place - HackUofT 2023',
 	},
 ];
