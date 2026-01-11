@@ -34,7 +34,7 @@ export default function ExperiencePage() {
 	return (
 		<WindowFrame title='EXPERIENCE'>
 			{/* WRAPPER: Light Mode Background */}
-			<div className='relative w-full h-full bg-[#faf9f6] text-neutral-900 selection:bg-yellow-200 selection:text-black'>
+			<div className='relative w-full h-full bg-dark-white text-neutral-900 selection:text-black'>
 				{/* CRT SCANLINE OVERLAY */}
 				<div
 					className='pointer-events-none absolute inset-0 z-10 opacity-100'
@@ -77,7 +77,7 @@ export default function ExperiencePage() {
 										</div>
 
 										{/* Desktop Date Display */}
-										<div className='hidden md:block text-left pr-6 w-full opacity-50 group-hover:opacity-100 transition-opacity duration-300 bg-[#faf9f6]'>
+										<div className='hidden md:block text-left pr-6 w-full opacity-50 group-hover:opacity-100 transition-opacity duration-300 '>
 											<div className='text-3xl font-black text-neutral-900 tracking-tighter leading-none'>
 												{exp.date}
 											</div>
