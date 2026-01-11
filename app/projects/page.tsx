@@ -1,11 +1,15 @@
 import { WindowFrame } from '@/components/WindowFrame';
 import { PROJECTS } from '@/data/config';
 import Image from 'next/image';
+import { RiSupabaseFill, RiNextjsFill, RiReactjsFill, RiTailwindCssFill } from 'react-icons/ri';
+import { BiLogoAws } from 'react-icons/bi';
+import { SiAwslambda, SiOpencv, SiMediapipe, SiPytorch, SiFlask, SiMongodb, SiLangchain } from 'react-icons/si';
+import { AiFillTrophy } from 'react-icons/ai';
 
 export default function ProjectsPage() {
 	return (
 		<WindowFrame title='PROJECT_ARCHIVE'>
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6'>
+			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6 h-full'>
 				{PROJECTS.map((project, index) => (
 					<div
 						key={index}
@@ -24,33 +28,39 @@ export default function ProjectsPage() {
 									src={project.image}
 									alt={project.title}
 									fill
-									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-									className='object-cover transition-transform duration-700 group-hover:scale-110'
+									sizes='100%'
+									className='object-cover transition-transform duration-700 scale-105 group-hover:scale-115'
 								/>
 							) : (
-								<div className='w-full h-full flex items-center justify-center text-neutral-400 font-mono'>
-									NO_IMG_DATA
+								<div className='text-center z-10'>
+									<div className='text-neutral-400 group-hover/image:text-neutral-900 font-bold font-mono text-xs uppercase tracking-[0.2em] transition-colors duration-300 border border-neutral-300 px-3 py-1 bg-white shadow-sm'>
+										NO_IMG_DATA
+									</div>
 								</div>
 							)}
 
 							{/* 2. WINNER/AWARD BADGE */}
 							{project.award && (
-								<div className='absolute top-2 right-2 bg-retro-yellow border-2 border-black px-2 py-1 flex items-center gap-1'>
-									<span>🏆</span>
-									<span className='text-sm font-bold uppercase'>{project.award}</span>
+								<div className='absolute top-2 right-2 z-20 bg-retro-yellow border-black border-2 px-2 py-1 flex items-center group duration-300 '>
+									<span className='font-bold max-w-0 overflow-hidden opacity-0 whitespace-nowrap transition-all duration-300 ease-in-out group-hover:max-w-50 group-hover:opacity-100 group-hover:mr-2'>
+										{project.award}
+									</span>
+									<span className='text-black text-3xl flex items-center justify-center '>
+										<AiFillTrophy />
+									</span>
 								</div>
 							)}
 						</a>
 
 						{/* CONTENT SECTION */}
-						<div className='p-6 flex flex-col flex-grow'>
+						<div className='p-6 flex flex-col grow'>
 							<div className='mb-4'>
 								<h3 className='text-2xl font-bold uppercase mb-2'>
 									<a
 										href={project.url}
 										target='_blank'
 										rel='noreferrer'
-										className='hover:underline decoration-4 decoration-blue-500'
+										className='hover:underline decoration-4 decoration-retro-blue'
 									>
 										{project.title}
 									</a>

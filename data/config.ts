@@ -67,27 +67,30 @@ export const PROJECTS = [
 	{
 		title: 'UofT Webring',
 		url: 'https://www.uoftwebring.com',
-		stack: ['Next.js', 'Supabase', 'Tailwind'],
+		stack: ['Next.js', 'Supabase', 'AWS', 'CloudFront'],
 		description: 'A connected platform that showcases the portfolios of UofT students in one network.',
 		tasks: [
 			'Implemented serverless media pipeline using AWS S3 with presigned URLs for secure uploads, CloudFront for edge caching, and Supabase for metadata management; automated image resizing with Lambda triggers',
 			'Developed a scalable, serverless mass mailing workflow with AWS SES & Lambda, sending 10K+ emails per user with automated scaling and 99% delivery success',
 		],
+		image: '/UofTWebring.png',
 	},
 	{
 		title: 'FITRIS',
 		url: 'https://github.com/yuvibirdi/fitris',
-		stack: ['Python', 'OpenCV', 'React'],
+		stack: ['React', 'OpenCV', 'PyTorch', 'MediaPipe', 'Flask'],
 		description: 'An interactive fitness game that maps real-world exercises to Tetris controls.',
 		tasks: [
 			'Developed a React front end, creating a responsive user interface, and built a Flask API back end using NumPy for movement detection and precise body joint tracking',
 			'Used MediaPipe & OpenCV to classify 5+ exercises with 90% detection accuracy',
 		],
+		image: '/Fitris.png',
+		award: 'Won @ JamHacks',
 	},
 	{
 		title: 'DevDuels',
 		url: 'https://github.com/m-shao/hack-the-valley',
-		stack: ['Next.js', 'Supabase', 'Tailwind'],
+		stack: ['Next.js', 'MongoDB', 'LangChain', 'Tailwind'],
 		description:
 			'A web-based game that encourages effective code reviews through competition and real-time AI feedback.',
 		tasks: [
@@ -95,5 +98,7 @@ export const PROJECTS = [
 			'Engineered the back end with MongoDB & GitHub API for authentication, data storage, and user integration',
 			'Implemented context-aware feedback using embeddings and RAG via LangChain, semantically analyzing code',
 		],
+		image: '/DevDuels.png',
+		award: 'Won @ HackTheValley',
 	},
 ];

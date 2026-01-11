@@ -148,10 +148,9 @@ export default function ExperiencePage() {
 												) : (
 													// IF NO IMAGE (Default Fallback)
 													<>
-														<div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] contrast-150"></div>
 														<div className='text-center z-10'>
 															<div className='text-neutral-400 group-hover/image:text-neutral-900 font-bold font-mono text-xs uppercase tracking-[0.2em] transition-colors duration-300 border border-neutral-300 px-3 py-1 bg-white shadow-sm'>
-																NO_DATA
+																NO_IMG_DATA
 															</div>
 														</div>
 													</>
