@@ -11,7 +11,11 @@ export const PERSONAL_INFO = {
 export const SOCIALS = [
 	{ name: 'GitHub', icon: FiGithub, url: 'https://github.com/KrishNalam' },
 	{ name: 'LinkedIn', icon: FiLinkedin, url: 'https://linkedin.com/in/KrishNalam' },
-	{ name: 'Resume', icon: FiFileText, url: '/resume.pdf' },
+	{
+		name: 'Resume',
+		icon: FiFileText,
+		url: 'https://drive.google.com/file/d/1spq1R7LHjfKBr8BawODr0yznoVeBqLzR/view?usp=sharing',
+	},
 	{ name: 'Devpost', icon: SiDevpost, url: 'https://devpost.com/KrishNalam' },
 ];
 
