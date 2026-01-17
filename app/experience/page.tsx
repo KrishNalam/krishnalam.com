@@ -37,7 +37,7 @@ export default function ExperiencePage() {
 			<div className='relative w-full h-full bg-dark-white text-neutral-900 selection:text-black'>
 				{/* CRT SCANLINE OVERLAY */}
 				<div
-					className='pointer-events-none absolute inset-0 z-10 opacity-100'
+					className='absolute inset-0 z-10 opacity-100'
 					style={{
 						background: `
                             linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.06) 50%, rgba(0,0,0,0.06)),
