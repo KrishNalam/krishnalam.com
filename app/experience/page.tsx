@@ -4,20 +4,16 @@ import { useScroll, useTransform, motion } from 'motion/react';
 import { WindowFrame } from '@/components/WindowFrame';
 import { EXPERIENCES } from '@/data/config';
 import Image from 'next/image';
+
 export default function ExperiencePage() {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const heightRef = useRef<HTMLDivElement>(null);
 	const [height, setHeight] = useState(0);
 
-	// Recalculate height on load and window resize
 	useEffect(() => {
 		const updateHeight = () => {
-			if (heightRef.current) {
-				const rect = heightRef.current.getBoundingClientRect();
-				setHeight(rect.height);
-			}
+			if (heightRef.current) setHeight(heightRef.current.getBoundingClientRect().height);
 		};
-
 		updateHeight();
 		window.addEventListener('resize', updateHeight);
 		return () => window.removeEventListener('resize', updateHeight);
@@ -33,127 +29,119 @@ export default function ExperiencePage() {
 
 	return (
 		<WindowFrame title='EXPERIENCE'>
-			{/* WRAPPER: Light Mode Background */}
-			<div className='relative w-full h-full bg-dark-white text-neutral-900 selection:text-black'>
-				{/* CRT SCANLINE OVERLAY */}
+			<div className='relative w-full h-full' style={{ background: 'var(--t-surface-dim)', color: 'var(--t-ink)' }}>
+				{/* CRT scanline overlay */}
 				<div
-					className='absolute inset-0 z-10 opacity-100'
+					className='absolute inset-0 z-10 pointer-events-none opacity-100'
 					style={{
-						background: `
-                            linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.06) 50%, rgba(0,0,0,0.06)),
-                            linear-gradient(90deg, rgba(255,0,0,0.02), rgba(0,255,0,0.02), rgba(0,0,255,0.02))
-                        `,
+						background:
+							'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.05)), linear-gradient(90deg, rgba(255,0,0,0.02), rgba(0,255,0,0.02), rgba(0,0,255,0.02))',
 						backgroundSize: '100% 3px, 4px 100%',
 					}}
-				></div>
+				/>
 
-				{/* SCROLL CONTAINER */}
-				<div ref={containerRef} className='w-full h-full relative overflow-y-auto overflow-x-hidden '>
-					{/* FULL WIDTH CONTAINER */}
+				{/* Scroll container — owns the scroll for framer-motion tracking */}
+				<div ref={containerRef} className='w-full h-full relative overflow-y-auto overflow-x-hidden custom-scrollbar'>
 					<div className='w-full px-4 mx-auto relative pt-8'>
-						{/* CONTENT WRAPPER */}
-						<div ref={heightRef} className='relative pl-15 '>
-							{/* --- THE BEAM (Timeline Line) --- */}
+						<div ref={heightRef} className='relative pl-15'>
+
+							{/* Timeline track */}
 							<div
-								style={{ height: height + 'px' }}
-								className='absolute left-6 top-0 overflow-hidden w-[2px] bg-neutral-200 z-0'
-							>
+								className='absolute left-6 top-0 w-[2px] z-0'
+								style={{ height: height + 'px', background: 'var(--t-border)', opacity: 0.35 }}
+							/>
+							{/* Animated progress fill */}
+							<div className='absolute left-6 top-0 w-[2px] z-0 overflow-hidden' style={{ height: height + 'px' }}>
 								<motion.div
-									style={{
-										height: heightTransform,
-										opacity: opacityTransform,
-									}}
-									className='absolute inset-x-0 top-0 w-[2px] bg-neutral-800'
+									style={{ height: heightTransform, opacity: opacityTransform, background: 'var(--t-ink)' }}
+									className='absolute inset-x-0 top-0 w-[2px]'
 								/>
 							</div>
 
 							{EXPERIENCES.map((exp, index) => (
 								<div key={index} className='flex flex-row justify-start pt-12 gap-0 group'>
-									{/* --- LEFT SIDE (Date & Marker) --- */}
+									{/* Date & marker */}
 									<div className='sticky flex z-0 items-end top-20 self-start shrink-0 max-w-[15%]'>
-										{/* The Marker Dot */}
-										<div className='h-4 w-4 absolute -left-11 top-1 md:top-2 bg-[#faf9f6] border-2 border-neutral-400 flex items-center justify-center z-30 group-hover:border-black group-hover:scale-125 transition-all duration-300'>
-											<div className='h-1.5 w-1.5 bg-neutral-800 opacity-0 group-hover:opacity-100 transition-opacity' />
+										<div
+											className='h-4 w-4 absolute -left-11 top-1 md:top-2 border-2 flex items-center justify-center z-30 transition-all duration-300 group-hover:scale-125'
+											style={{ background: 'var(--t-surface)', borderColor: 'var(--t-ink-muted)' }}
+										>
+											<div
+												className='h-1.5 w-1.5 opacity-0 group-hover:opacity-100 transition-opacity'
+												style={{ background: 'var(--t-ink)' }}
+											/>
 										</div>
-
-										{/* Desktop Date Display */}
-										<div className='hidden md:block text-left pr-6 w-full opacity-50 group-hover:opacity-100 transition-opacity duration-300 '>
-											<div className='text-3xl font-black text-neutral-900 tracking-tighter leading-none'>
+										<div className='hidden md:block text-left pr-6 w-full opacity-50 group-hover:opacity-100 transition-opacity duration-300'>
+											<div className='text-3xl font-black tracking-tighter leading-none' style={{ color: 'var(--t-ink)' }}>
 												{exp.date}
 											</div>
-											<div className='text-xs font-bold text-neutral-500 mt-2 uppercase tracking-widest'>
+											<div className='text-xs font-bold mt-2 uppercase tracking-widest' style={{ color: 'var(--t-ink-muted)' }}>
 												{exp.location}
 											</div>
 										</div>
 									</div>
 
-									{/* --- RIGHT SIDE (Card Content) --- */}
+									{/* Card content */}
 									<div className='relative pl-12 md:pl-0 flex-1 w-full z-10'>
-										{/* Mobile Header */}
+										{/* Mobile header */}
 										<div className='md:hidden block mb-3 pl-1'>
-											<span className='text-xs font-bold text-neutral-500 block mb-1 uppercase'>
+											<span className='text-xs font-bold block mb-1 uppercase' style={{ color: 'var(--t-ink-muted)' }}>
 												{exp.date}
 											</span>
-											<span className='text-xl font-black text-neutral-900 block'>
+											<span className='text-xl font-black block' style={{ color: 'var(--t-ink)' }}>
 												{exp.company}
 											</span>
-											<span className='text-xs text-neutral-600 block uppercase font-bold'>
+											<span className='text-xs block uppercase font-bold' style={{ color: 'var(--t-ink-muted)' }}>
 												{exp.title}
 											</span>
 										</div>
 
-										{/* Desktop Header */}
-										<div className='hidden md:flex items-baseline gap-4 mb-4 border-b border-neutral-300/50 pb-2 w-full'>
-											<h3 className='text-3xl font-black text-neutral-900 uppercase'>
+										{/* Desktop header */}
+										<div className='hidden md:flex items-baseline gap-4 mb-4 pb-2 w-full border-b' style={{ borderColor: 'var(--t-border)' }}>
+											<h3 className='text-3xl font-black uppercase' style={{ color: 'var(--t-ink)' }}>
 												{exp.company}
 											</h3>
-											<div className='text-sm font-bold text-neutral-500 uppercase tracking-widest'>
+											<div className='text-sm font-bold uppercase tracking-widest' style={{ color: 'var(--t-ink-muted)' }}>
 												{exp.title}
 											</div>
 										</div>
 
-										{/* CONTENT ROW: Description + Image Side-by-Side */}
+										{/* Content row: description + image */}
 										<div className='flex flex-row pb-10'>
-											{/* 1. Description Box */}
-											<div className='flex-1 bg-off-white border border-black border-2 p-6 mr-6 relative group-hover:shadow-translucent group-hover:-translate-y-1 transition-all duration-300'>
+											<div
+												className='flex-1 border-2 p-6 mr-6 relative group-hover:shadow-translucent group-hover:-translate-y-1 transition-all duration-300'
+												style={{ background: 'var(--t-surface)', borderColor: 'var(--t-border)' }}
+											>
 												<ul className='space-y-3'>
 													{exp.desc.map((point, i) => (
-														<li
-															key={i}
-															className='flex items-start text-sm md:text-base text-neutral-700 leading-relaxed font-medium'
-														>
-															<span className='mr-3 mt-1.5 text-neutral-400 text-[10px] shrink-0'>
-																●
-															</span>
+														<li key={i} className='flex items-start text-sm md:text-base leading-relaxed font-medium' style={{ color: 'var(--t-ink-body)' }}>
+															<span className='mr-3 mt-1.5 text-[10px] shrink-0' style={{ color: 'var(--t-ink-muted)' }}>●</span>
 															{point}
 														</li>
 													))}
 												</ul>
 											</div>
 
-											{/* 2. Image Logic */}
-											<div className='w-[25%] h-auto z-50 shrink-0 bg-neutral-100 border border-dashed border-neutral-300 relative overflow-hidden group/image flex items-center justify-center'>
-												{/* CONDITIONAL RENDERING */}
+											<div
+												className='w-[25%] h-auto z-50 shrink-0 relative overflow-hidden group/image flex items-center justify-center border border-dashed'
+												style={{ background: 'var(--t-surface-faint)', borderColor: 'var(--t-border)' }}
+											>
 												{exp.image ? (
-													// IF IMAGE EXISTS
-													<>
-														{/* Optional: Add a mix-blend overlay to make it look printed/retro */}
-														<Image
-															src={exp.image}
-															alt={`${exp.company} office`}
-															fill
-															className='absolute border-2 border-black inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500'
-														/>
-													</>
+													<Image
+														src={exp.image}
+														alt={`${exp.company} office`}
+														fill
+														className='absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 border-2'
+													/>
 												) : (
-													// IF NO IMAGE (Default Fallback)
-													<>
-														<div className='text-center z-10'>
-															<div className='text-neutral-400 group-hover/image:text-neutral-900 font-bold font-mono text-xs uppercase tracking-[0.2em] transition-colors duration-300 border border-neutral-300 px-3 py-1 bg-white shadow-sm'>
-																NO_IMG_DATA
-															</div>
+													<div className='text-center z-10'>
+														<div
+															className='font-bold font-mono text-xs uppercase tracking-[0.2em] px-3 py-1 border shadow-sm'
+															style={{ color: 'var(--t-ink-muted)', borderColor: 'var(--t-border)', background: 'var(--t-surface)' }}
+														>
+															NO_IMG_DATA
 														</div>
-													</>
+													</div>
 												)}
 											</div>
 										</div>

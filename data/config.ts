@@ -67,6 +67,27 @@ export const EXPERIENCES = [
 	},
 ];
 
+export const WORKS_IN_PROGRESS = [
+	{
+		name: 'Project Delphi',
+		progress: 65,
+		url: '#',
+		description: 'AI-powered analytics platform',
+	},
+	{
+		name: 'Portfolio v2',
+		progress: 40,
+		url: '#',
+		description: 'Next iteration of this site',
+	},
+	{
+		name: 'PredicTurf',
+		progress: 80,
+		url: 'https://github.com/KrishNalam',
+		description: 'ML sports prediction engine',
+	},
+];
+
 export const PROJECTS = [
 	{
 		title: 'UofT Webring',

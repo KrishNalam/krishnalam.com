@@ -1,20 +1,113 @@
 @import 'tailwindcss';
 
-@theme inline {
-	--color-retro-yellow: #f0d66e;
-	--color-light-gray: #737373;
-	--color-dark-gray: #262626;
-	--color-off-white: rgba(255, 255, 255, 0.9);
-	--color-dark-white: rgba(255, 255, 255, 0.7);
-	--color-retro-blue: #11408c;
+/* ─── DESIGN TOKENS ─── */
 
+:root {
+	/* Light theme (retro / Win95) */
+	--t-desktop-bg: #262626;
+	--t-grid-color: rgba(0, 0, 0, 0.45);
+	--t-surface: #ffffff;
+	--t-surface-dim: rgba(255, 255, 255, 0.92);
+	--t-surface-faint: rgba(255, 255, 255, 0.7);
+	--t-titlebar: #11408c;
+	--t-titlebar-text: #ffffff;
+	--t-ink: #000000;
+	--t-ink-body: #262626;
+	--t-ink-muted: #737373;
+	--t-accent-blue: #11408c;
+	--t-accent-yellow: #f0d66e;
+	--t-accent-orange: #ff8600;
+	--t-border: #000000;
+	--t-shadow: rgba(115, 115, 115, 1);
+}
+
+[data-theme='dark'] {
+	/* Dark theme — deep navy Win95 */
+	--t-desktop-bg: #0d1421;
+	--t-grid-color: rgba(255, 255, 255, 0.04);
+	--t-surface: #1a2235;
+	--t-surface-dim: rgba(18, 25, 45, 0.97);
+	--t-surface-faint: rgba(26, 34, 55, 0.6);
+	--t-titlebar: #0e2d5e;
+	--t-titlebar-text: #c8deff;
+	--t-ink: #dce8ff;
+	--t-ink-body: #c0cfea;
+	--t-ink-muted: #607090;
+	--t-accent-blue: #4a9eff;
+	--t-accent-yellow: #f0d66e;
+	--t-accent-orange: #ff9a3c;
+	--t-border: #2a3d60;
+	--t-shadow: rgba(0, 0, 0, 0.7);
+}
+
+@theme inline {
+	/* Structural utilities */
+	--color-desktop: var(--t-desktop-bg);
+	--color-surface: var(--t-surface);
+	--color-surface-dim: var(--t-surface-dim);
+	--color-titlebar: var(--t-titlebar);
+	--color-ink: var(--t-ink);
+
+	/* Named aliases — keep existing class names working */
+	--color-retro-yellow: var(--t-accent-yellow);
+	--color-light-gray: var(--t-ink-muted);
+	--color-dark-gray: var(--t-ink-body);
+	--color-off-white: var(--t-surface-dim);
+	--color-dark-white: var(--t-surface-faint);
+	--color-retro-blue: var(--t-accent-blue);
+
+	/* Shadows */
+	--shadow-translucent: 4px 4px 0px var(--t-shadow);
+	--shadow-opaque: 4px 4px 0px rgba(0, 0, 0, 1);
 	--drop-shadow-opaque: 4px 4px 0px rgba(0, 0, 0, 1);
-	--shadow-translucent: 4px 4px 0px #737373;
 }
 
 body {
 	font-family: var(--font-vt323);
 }
+
+/* ─── CUSTOM SCROLLBARS ─── */
+
+/* Slim retro scroll — for WIP tile and other internal panels */
+.retro-scroll::-webkit-scrollbar {
+	width: 6px;
+}
+.retro-scroll::-webkit-scrollbar-track {
+	background: transparent;
+}
+.retro-scroll::-webkit-scrollbar-thumb {
+	background: var(--t-accent-blue);
+	border: 1px solid var(--t-border);
+}
+.retro-scroll::-webkit-scrollbar-thumb:hover {
+	background: var(--t-accent-orange);
+}
+.retro-scroll {
+	scrollbar-width: thin;
+	scrollbar-color: var(--t-accent-blue) transparent;
+}
+
+/* Full-weight scroll — for WindowFrame panels */
+.custom-scrollbar::-webkit-scrollbar {
+	width: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+	background: var(--t-surface);
+	border-left: 3px solid var(--t-border);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background: var(--t-accent-blue);
+	border: 2px solid var(--t-border);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: var(--t-accent-orange);
+}
+.custom-scrollbar {
+	scrollbar-width: thin;
+	scrollbar-color: var(--t-accent-blue) var(--t-surface);
+}
+
+/* ─── ANIMATIONS ─── */
 
 @keyframes marquee-vertical {
 	0% {
@@ -24,12 +117,10 @@ body {
 		transform: translateY(-50%);
 	}
 }
-
 .animate-marquee-vertical {
 	animation: marquee-vertical 20s linear infinite;
 }
 
-/* Optional: Fades the top and bottom of the tech list */
 .mask-image-gradient {
 	mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
@@ -40,10 +131,9 @@ body {
 		width: 0;
 	}
 	50% {
-		width: 24px; /* Adjust roughly to fit the width of 3 dots in your font */
+		width: 24px;
 	}
 }
-
 .typing-dots {
 	animation: typing-dots 2s steps(4, end) infinite;
 }

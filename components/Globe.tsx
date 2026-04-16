@@ -10,56 +10,53 @@ interface GlobeProps {
 
 export const Globe = ({
 	className = '',
-	// Default to Toronto
-	markers = [{ location: [43.6532, -79.3832], size: 0.1 }],
+	markers = [{ location: [43.6532, -79.3832], size: 0.12 }],
 }: GlobeProps) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const pointerInteracting = useRef<number | null>(null);
 	const pointerInteractionMovement = useRef(0);
-
-	// Sensitivity: Lower = slower drag.
-	// 0.005 is very slow/heavy. 0.01 is standardish.
 	const DRAG_SENSITIVITY = 0.01;
 
 	useEffect(() => {
 		let phi = 0;
 		let width = 0;
 
-		const onResize = () => canvasRef.current && (width = canvasRef.current.offsetWidth);
-		window.addEventListener('resize', onResize);
+		const onResize = () => {
+			if (canvasRef.current) width = canvasRef.current.offsetWidth;
+		};
+
+		// ResizeObserver tracks the canvas parent — responsive to container, not viewport
+		const ro = new ResizeObserver(onResize);
+		if (canvasRef.current?.parentElement) ro.observe(canvasRef.current.parentElement);
 		onResize();
 
 		if (!canvasRef.current) return;
 
 		const globe = createGlobe(canvasRef.current, {
-			devicePixelRatio: 2.28,
-			width: width,
-			height: width,
+			devicePixelRatio: 2,
+			width: width * 2,
+			height: width * 2,
 			phi: 0,
-			theta: 0.25,
-			dark: 0, // 0 = Light Mode (best for white backgrounds)
-			diffuse: 1.2, // Higher = brighter
-			mapSamples: 16000, // Number of dots
-			mapBrightness: 6,
-			baseColor: [255, 255, 255],
-			markerColor: [239, 68, 68],
-			glowColor: [0, 0, 0],
-			// -----------------
-
-			markers: markers,
+			theta: 0.3,
+			dark: 1,
+			diffuse: 1.8,
+			mapSamples: 16000,
+			mapBrightness: 4.5,
+			baseColor: [0.05, 0.14, 0.32],
+			markerColor: [1, 0.6, 0.1],
+			glowColor: [0.2, 0.5, 1.0],
+			markers,
 			onRender: (state) => {
-				// Auto-rotation
-				if (!pointerInteracting.current) {
-					phi += 0.005;
-				}
-				// Interactive Rotation
+				if (!pointerInteracting.current) phi += 0.004;
 				state.phi = phi + pointerInteractionMovement.current;
+				state.width = width * 2;
+				state.height = width * 2;
 			},
 		});
 
 		return () => {
 			globe.destroy();
-			window.removeEventListener('resize', onResize);
+			ro.disconnect();
 		};
 	}, [markers]);
 
@@ -67,15 +64,11 @@ export const Globe = ({
 		<div className={`w-full h-full flex items-center justify-center ${className}`}>
 			<canvas
 				ref={canvasRef}
-				style={{
-					width: '100%',
-					height: '100%',
-					contain: 'layout paint size',
-					opacity: 1,
-				}}
+				style={{ aspectRatio: '1 / 1', width: '100%', contain: 'layout paint size' }}
 				className='cursor-grab active:cursor-grabbing'
 				onPointerDown={(e) => {
-					pointerInteracting.current = e.clientX - pointerInteractionMovement.current / DRAG_SENSITIVITY;
+					pointerInteracting.current =
+						e.clientX - pointerInteractionMovement.current / DRAG_SENSITIVITY;
 					canvasRef.current!.style.cursor = 'grabbing';
 				}}
 				onPointerUp={() => {
@@ -88,8 +81,8 @@ export const Globe = ({
 				}}
 				onMouseMove={(e) => {
 					if (pointerInteracting.current !== null) {
-						const delta = e.clientX - pointerInteracting.current;
-						pointerInteractionMovement.current = delta * DRAG_SENSITIVITY;
+						pointerInteractionMovement.current =
+							(e.clientX - pointerInteracting.current) * DRAG_SENSITIVITY;
 					}
 				}}
 			/>

@@ -5,10 +5,10 @@ import { DesktopFolder } from './DesktopFolder';
 
 export const DesktopNav = () => {
 	return (
-		<nav className='flex flex-col gap-6 w-20 shrink-0 items-center pt-4'>
+		<nav className='flex flex-row sm:flex-col gap-2 sm:gap-6 shrink-0 items-center sm:pt-4'>
 			<DesktopFolder icon={RiFolderUserFill} label='ABOUT' href='/about' />
-			<DesktopFolder icon={RiFolderInfoFill} label='EXPERIENCE' href='/experience' />
-			<DesktopFolder icon={RiFolderChartFill} label='PROJECTS' href='/projects' />
+			<DesktopFolder icon={RiFolderInfoFill} label='XP' href='/experience' />
+			<DesktopFolder icon={RiFolderChartFill} label='WORK' href='/projects' />
 		</nav>
 	);
 };
