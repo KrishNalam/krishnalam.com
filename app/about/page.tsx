@@ -8,6 +8,10 @@ import { Globe } from '@/components/Globe';
 import { VscGithub } from 'react-icons/vsc';
 import { RiFileCopyFill } from 'react-icons/ri';
 import { RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
+import { useState, useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as SwiperType } from 'swiper';
+import 'swiper/css';
 
 /* ─── Sub-components ─── */
 
@@ -20,16 +24,12 @@ const TechBadge = ({ label }: { label: string }) => (
 	</div>
 );
 
-const HobbyItem = ({ emoji, name }: { emoji: string; name: string }) => (
-	<div className='group flex flex-col items-center justify-center p-0 border-dashed border-4 border-light-gray hover:bg-light-gray transition-all flex-1 min-w-0 min-h-[90px]'>
-		<span className='text-3xl @md:text-4xl filter grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:-translate-y-1'>
-			{emoji}
-		</span>
-		<span className='text-ink text-sm @md:text-base px-1 text-center truncate w-full opacity-0 group-hover:opacity-100 transition-opacity mt-1'>
-			{name}
-		</span>
-	</div>
-);
+const HOBBIES = [
+	{ id: 'cinema', emoji: '🍿', name: 'Cinema Nerd' },
+	{ id: 'printing', emoji: '🖨️', name: '3D Printing' },
+	{ id: 'garden', emoji: '🚜', name: 'Gardener' },
+	{ id: 'gaming', emoji: '🎮', name: 'Gamer' },
+];
 
 const WIPProject = ({ name, progress, url }: { name: string; progress: number; url: string }) => (
 	<div
@@ -97,6 +97,9 @@ const TECH_STACK = [
 /* ─── Page ─── */
 
 export default function AboutPage() {
+	const [activeIdx, setActiveIdx] = useState(0);
+	const swiperRef = useRef<SwiperType | null>(null);
+
 	const handleCopyEmail = () => {
 		navigator.clipboard.writeText('dev@krishnalam.com');
 		const scalar = 2;
@@ -122,44 +125,59 @@ export default function AboutPage() {
 			    @4xl+ (896px)  → 8-col × 5-row explicit bento
 
 			  @4xl grid (cols 1-3 | cols 4-6 | cols 7-8):
-			    Row 1-2: BIO(1-3)    WIP(4-6)    PHOTO(7-8)
-			    Row 3:   RADAR(1-3)  READY(4-6)  EMAIL(7-8)
-			    Row 4:   RADAR(1-3)  HOBBIES(4-8)
-			    Row 5:   TECH(1-8)  ← horizontal marquee, full width
+			    Row 1-2: WIP(1-3)    READY(4-6)   COMBO(7-8 ↓ portrait + bio)
+			    Row 3-4: RADAR(1-3)  HOBBIES(4-6) COMBO(7-8)
+			    Row 5:   TECH(1-6)                EMAIL(7-8)
 
 			  DOM order for @sm 2-col auto-flow:
-			    BIO(span-2) | WIP | PHOTO | RADAR | READY | EMAIL | HOBBIES(span-2) | TECH(span-2)
+			    COMBO(span-2) | WIP | READY | EMAIL | RADAR | HOBBIES(span-2) | TECH(span-2)
 			*/}
 			<div className='@container h-full overflow-y-auto custom-scrollbar'>
-				<div className='grid grid-cols-1 @sm:grid-cols-2 @4xl:grid-cols-8 @4xl:grid-rows-5 @4xl:h-full gap-4 p-4 sm:p-6'>
-					{/* ── 1. BIO TEXT ── */}
+				<div className='grid grid-cols-1 @sm:grid-cols-2 @4xl:grid-cols-16 @4xl:grid-rows-10 @4xl:h-full gap-4 p-4 sm:p-6'>
+					{/* ── 1. COMBO — Portrait on top + Hello Again below (vertical) ── */}
 					<div
 						className='
-							@sm:col-span-2
-							@4xl:col-start-1 @4xl:col-span-3 @4xl:row-start-1 @4xl:row-span-2
-							p-5 shadow-translucent flex flex-col justify-center min-h-[140px]
+							@sm:col-span-4
+							@4xl:col-start-1 @4xl:col-span-6 @4xl:row-start-1 @4xl:row-span-8
+							shadow-translucent flex flex-col overflow-hidden
 						'
 						style={{ background: 'var(--t-surface)' }}
 					>
+						{/* Photo */}
 						<div
-							className='flex items-center gap-2 mb-3 drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'
-							style={{ color: 'var(--t-accent-blue)' }}
+							className='relative w-full aspect-[4/5] shrink-0 border-b-4'
+							style={{ borderColor: 'var(--t-border)' }}
 						>
-							<span className='text-2xl @md:text-3xl font-extrabold uppercase tracking-widest'>
-								:) Hello Again!
-							</span>
+							<Image
+								src={PERSONAL_INFO.headshot || '/placeholder.jpg'}
+								fill
+								alt='Krish Nalam'
+								className='object-cover object-top'
+							/>
 						</div>
-						<p className='text-lg @md:text-xl leading-tight text-ink'>
-							This is me — a tech geek by day, code wizard by night. Always ready to debug life&apos;s
-							challenges with a dash of humor and caffeine!
-						</p>
+
+						{/* Bio text */}
+						<div className='flex-1 p-4 flex flex-col justify-center min-h-0'>
+							<div
+								className='flex items-center gap-2 mb-2 drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'
+								style={{ color: 'var(--t-accent-blue)' }}
+							>
+								<span className='text-xl @md:text-2xl font-extrabold uppercase tracking-widest leading-tight'>
+									:) Hello Again!
+								</span>
+							</div>
+							<p className='text-base @md:text-lg leading-tight text-ink'>
+								This is me — a tech geek by day, code wizard by night. Always ready to debug life&apos;s
+								challenges with a dash of humor and caffeine!
+							</p>
+						</div>
 					</div>
 
 					{/* ── 2. WORKS IN PROGRESS ── */}
 					<div
 						className='
-							@sm:col-span-1
-							@4xl:col-start-4 @4xl:col-span-3 @4xl:row-start-1 @4xl:row-span-2
+							@sm:col-span-2
+							@4xl:col-start-7 @4xl:col-span-6 @4xl:row-start-1 @4xl:row-span-4
 							p-4 shadow-translucent flex flex-col min-h-[140px]
 						'
 						style={{ background: 'var(--t-surface)' }}
@@ -175,28 +193,11 @@ export default function AboutPage() {
 						</div>
 					</div>
 
-					{/* ── 3. PHOTO — portrait crop ── */}
+					{/* ── 3. SKILL RADAR ── */}
 					<div
 						className='
-							@sm:col-span-1
-							@4xl:col-start-7 @4xl:col-span-2 @4xl:row-start-1 @4xl:row-span-2
-							relative shadow-translucent overflow-hidden min-h-[160px] border-4
-						'
-						style={{ borderColor: 'var(--t-border)' }}
-					>
-						<Image
-							src={PERSONAL_INFO.headshot || '/placeholder.jpg'}
-							fill
-							alt='Krish Nalam'
-							className='object-cover object-top'
-						/>
-					</div>
-
-					{/* ── 4. SKILL RADAR ── */}
-					<div
-						className='
-							@sm:col-span-1
-							@4xl:col-start-1 @4xl:col-span-3 @4xl:row-start-3 @4xl:row-span-2
+							@sm:col-span-2
+							@4xl:col-start-10 @4xl:col-span-3 @4xl:row-start-5 @4xl:row-span-4
 							p-4 shadow-translucent flex flex-col min-h-[240px]
 						'
 						style={{ background: 'var(--t-surface)' }}
@@ -234,8 +235,8 @@ export default function AboutPage() {
 					{/* ── 5. READY TO CONNECT (Globe) ── */}
 					<div
 						className='
-							@sm:col-span-1
-							@4xl:col-start-4 @4xl:col-span-2 @4xl:row-start-3 @4xl:row-span-2
+							@sm:col-span-2
+							@4xl:col-start-13 @4xl:col-span-4 @4xl:row-start-1 @4xl:row-span-6
 							p-3 shadow-translucent flex flex-row items-center gap-3 overflow-hidden min-h-[110px]
 						'
 						style={{ background: 'var(--t-surface)' }}
@@ -259,9 +260,9 @@ export default function AboutPage() {
 					{/* ── 6. COPY EMAIL ── */}
 					<div
 						className='
-							@sm:col-span-1
-							@4xl:col-start-7 @4xl:col-span-2 @4xl:row-start-3
-							p-3 shadow-translucent flex flex-col items-center justify-center gap-2 relative overflow-hidden min-h-[110px]
+							@sm:col-span-2
+							@4xl:col-start-7 @4xl:col-span-3 @4xl:row-start-6 @4xl:row-span-3
+							p-3 shadow-translucent flex flex-row items-center justify-center gap-3 relative overflow-hidden min-h-[60px]
 						'
 						style={{ background: 'var(--t-surface)' }}
 					>
@@ -269,10 +270,8 @@ export default function AboutPage() {
 							className='absolute inset-0 opacity-10 pointer-events-none'
 							style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
 						/>
-						<p className='relative z-10 text-xs font-mono text-dark-gray uppercase tracking-widest text-center leading-snug'>
-							Copy
-							<br />
-							Email
+						<p className='relative z-10 text-xs font-mono text-dark-gray uppercase tracking-widest leading-snug'>
+							Copy Email
 						</p>
 						<button
 							onClick={handleCopyEmail}
@@ -283,34 +282,116 @@ export default function AboutPage() {
 						</button>
 					</div>
 
-					{/* ── 7. HOBBIES ── */}
+					{/* ── 7. HOBBIES — character select carousel (Swiper) ── */}
 					<div
 						className='
-							@sm:col-span-2
-							@4xl:col-start-6 @4xl:col-span-3 @4xl:row-start-4 @4xl:row-span-2
-							p-4 shadow-translucent flex flex-col
+							@sm:col-span-4
+							@4xl:col-start-13 @4xl:col-span-4 @4xl:row-start-7 @4xl:row-span-4
+							shadow-translucent flex flex-col overflow-hidden
 						'
 						style={{ background: 'var(--t-surface)' }}
 					>
-						<h3 className='font-bold text-2xl mb-3 flex items-center gap-2 text-retro-yellow shrink-0'>
-							<span className='drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'>Recharge Modes 🌩️</span>
-							<span className='text-base font-normal text-dark-gray'>(Hover!)</span>
-						</h3>
-						<div className='flex flex-wrap @md:flex-nowrap gap-3 flex-1'>
-							<HobbyItem emoji='🍿' name='Cinema Nerd' />
-							<HobbyItem emoji='🖨️' name='3D Printing' />
+						{/* Title bar + dot indicator */}
+						<div
+							className='flex items-center justify-between px-4 py-2 shrink-0 border-b-2 border-dashed'
+							style={{ borderColor: 'var(--t-border)' }}
+						>
+							<h3 className='font-bold text-lg text-retro-yellow drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'>
+								Recharge Modes 🌩️
+							</h3>
+							<div className='flex gap-1.5'>
+								{HOBBIES.map((_, i) => (
+									<button
+										key={i}
+										onClick={() => swiperRef.current?.slideToLoop(i)}
+										aria-label={`Go to slide ${i + 1}`}
+										className='w-2.5 h-2.5 border-2 transition-all focus:outline-none'
+										style={{
+											borderColor: 'var(--t-border)',
+											background: i === activeIdx ? 'var(--t-accent-blue)' : 'transparent',
+										}}
+									/>
+								))}
+							</div>
 						</div>
-						<div className='flex flex-wrap @md:flex-nowrap gap-3 mt-3 flex-1'>
-							<HobbyItem emoji='🚜' name='Gardener' />
-							<HobbyItem emoji='🎮' name='Gamer' />
+
+						{/* Swiper carousel */}
+						<div className='flex-1 min-h-0 w-full min-w-0'>
+							<Swiper
+								slidesPerView={2.5}
+								centeredSlides={true}
+								loop={true}
+								loopAdditionalSlides={3}
+								spaceBetween={24}
+								grabCursor={true}
+								onSwiper={(s) => {
+									swiperRef.current = s;
+								}}
+								onSlideChange={(s) => setActiveIdx(s.realIndex % HOBBIES.length)}
+								className='h-full w-full'
+							>
+								{[...HOBBIES, ...HOBBIES].map((h, i) => (
+									<SwiperSlide key={`${h.id}-${i}`} className='!h-auto'>
+										{({ isActive }) => (
+											<div
+												className='h-full flex flex-col items-center justify-center transition-opacity duration-200'
+												style={{ opacity: isActive ? 1 : 0.35 }}
+											>
+												<span
+													className={`leading-none transition-all duration-200 ${
+														isActive ? 'text-6xl' : 'text-3xl filter grayscale'
+													}`}
+												>
+													{h.emoji}
+												</span>
+												<div
+													className='overflow-hidden transition-all duration-200'
+													style={{
+														maxHeight: isActive ? '3rem' : 0,
+														marginTop: isActive ? '0.75rem' : 0,
+													}}
+												>
+													<p
+														className='font-bold font-mono uppercase tracking-[0.15em] text-sm text-center px-3 pt-1 border-t-2 whitespace-nowrap'
+														style={{
+															borderColor: 'var(--t-accent-blue)',
+															color: 'var(--t-ink)',
+														}}
+													>
+														{h.name}
+													</p>
+												</div>
+											</div>
+										)}
+									</SwiperSlide>
+								))}
+							</Swiper>
+						</div>
+
+						{/* Prev / Next */}
+						<div className='flex justify-between px-3 py-2 shrink-0'>
+							<button
+								onClick={() => swiperRef.current?.slidePrev()}
+								className='border-2 border-dashed px-3 py-0.5 font-mono text-sm transition-all focus:outline-none hover:bg-light-gray'
+								style={{ borderColor: 'var(--t-border)', color: 'var(--t-ink)' }}
+							>
+								◀ PREV
+							</button>
+							<button
+								onClick={() => swiperRef.current?.slideNext()}
+								className='border-2 border-dashed px-3 py-0.5 font-mono text-sm transition-all focus:outline-none hover:bg-light-gray'
+								style={{ borderColor: 'var(--t-border)', color: 'var(--t-ink)' }}
+							>
+								NEXT ▶
+							</button>
 						</div>
 					</div>
 
 					{/* ── 8. TECH STACK — horizontal scrolling marquee ── */}
 					<div
 						className='
-							@sm:col-span-2
-							@4xl:col-start-1 @4xl:col-span-5 @4xl:row-start-5
+							@sm:col-span-4
+							@4xl:col-start-1 @4xl:col-span-12 @4xl:row-start-9 @4xl:row-span-2
 							shadow-translucent relative overflow-hidden flex items-center gap-3 px-4 min-h-[60px]
 						'
 						style={{ background: 'var(--t-surface)' }}
