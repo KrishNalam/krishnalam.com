@@ -13,7 +13,7 @@ import { RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Responsi
 
 const TechBadge = ({ label }: { label: string }) => (
 	<div
-		className='px-3 py-1 rounded text-xs font-mono w-fit border'
+		className='px-3 py-1 rounded text-xs font-mono shrink-0 border'
 		style={{ background: 'var(--t-surface-faint)', borderColor: 'var(--t-border)', color: 'var(--t-ink)' }}
 	>
 		{label}
@@ -121,13 +121,14 @@ export default function AboutPage() {
 			    @sm – @4xl     → 2-col auto-flow
 			    @4xl+ (896px)  → 8-col × 5-row explicit bento
 
-			  @4xl grid (all rows sum to 8 cols):
-			    Row 1-2: BIO(1-4)  WIP(5-7)   PHOTO(8)
-			    Row 3:   RADAR(1-3) READY(4-5) EMAIL(6-7) TECH(8)
-			    Row 4-5: RADAR(1-3) HOBBIES(4-7)          TECH(8)
+			  @4xl grid (cols 1-3 | cols 4-6 | cols 7-8):
+			    Row 1-2: BIO(1-3)    WIP(4-6)    PHOTO(7-8)
+			    Row 3:   RADAR(1-3)  READY(4-6)  EMAIL(7-8)
+			    Row 4:   RADAR(1-3)  HOBBIES(4-8)
+			    Row 5:   TECH(1-8)  ← horizontal marquee, full width
 
-			  DOM order drives @sm 2-col auto-flow:
-			    BIO(span-2) | WIP | PHOTO | RADAR | READY | EMAIL | HOBBIES(span-2) | TECH
+			  DOM order for @sm 2-col auto-flow:
+			    BIO(span-2) | WIP | PHOTO | RADAR | READY | EMAIL | HOBBIES(span-2) | TECH(span-2)
 			*/}
 			<div className='@container h-full overflow-y-auto custom-scrollbar'>
 				<div className='grid grid-cols-1 @sm:grid-cols-2 @4xl:grid-cols-8 @4xl:grid-rows-5 @4xl:h-full gap-4 p-4 sm:p-6'>
@@ -158,7 +159,7 @@ export default function AboutPage() {
 					<div
 						className='
 							@sm:col-span-1
-							@4xl:col-start-6 @4xl:col-span-3 @4xl:row-start-1 @4xl:row-span-2
+							@4xl:col-start-4 @4xl:col-span-3 @4xl:row-start-1 @4xl:row-span-2
 							p-4 shadow-translucent flex flex-col min-h-[140px]
 						'
 						style={{ background: 'var(--t-surface)' }}
@@ -174,11 +175,11 @@ export default function AboutPage() {
 						</div>
 					</div>
 
-					{/* ── 3. PHOTO — its own tile, portrait crop ── */}
+					{/* ── 3. PHOTO — portrait crop ── */}
 					<div
 						className='
 							@sm:col-span-1
-							@4xl:col-start-4 @4xl:col-span-2 @4xl:row-start-1 @4xl:row-span-2
+							@4xl:col-start-7 @4xl:col-span-2 @4xl:row-start-1 @4xl:row-span-2
 							relative shadow-translucent overflow-hidden min-h-[160px] border-4
 						'
 						style={{ borderColor: 'var(--t-border)' }}
@@ -191,11 +192,11 @@ export default function AboutPage() {
 						/>
 					</div>
 
-					{/* ── 4. SKILL RADAR — 3-row span gives the chart real space ── */}
+					{/* ── 4. SKILL RADAR ── */}
 					<div
 						className='
 							@sm:col-span-1
-							@4xl:col-start-1 @4xl:col-span-2 @4xl:row-start-3 @4xl:row-span-2
+							@4xl:col-start-1 @4xl:col-span-3 @4xl:row-start-3 @4xl:row-span-2
 							p-4 shadow-translucent flex flex-col min-h-[240px]
 						'
 						style={{ background: 'var(--t-surface)' }}
@@ -234,7 +235,7 @@ export default function AboutPage() {
 					<div
 						className='
 							@sm:col-span-1
-							@4xl:col-start-4 @4xl:col-span-2 @4xl:row-start-3
+							@4xl:col-start-4 @4xl:col-span-2 @4xl:row-start-3 @4xl:row-span-2
 							p-3 shadow-translucent flex flex-row items-center gap-3 overflow-hidden min-h-[110px]
 						'
 						style={{ background: 'var(--t-surface)' }}
@@ -259,7 +260,7 @@ export default function AboutPage() {
 					<div
 						className='
 							@sm:col-span-1
-							@4xl:col-start-6 @4xl:col-span-2 @4xl:row-start-3
+							@4xl:col-start-7 @4xl:col-span-2 @4xl:row-start-3
 							p-3 shadow-translucent flex flex-col items-center justify-center gap-2 relative overflow-hidden min-h-[110px]
 						'
 						style={{ background: 'var(--t-surface)' }}
@@ -282,11 +283,11 @@ export default function AboutPage() {
 						</button>
 					</div>
 
-					{/* ── 7. HOBBIES — @sm:col-span-2 = full-width on tablet/mobile ── */}
+					{/* ── 7. HOBBIES ── */}
 					<div
 						className='
 							@sm:col-span-2
-							@4xl:col-start-4 @4xl:col-span-4 @4xl:row-start-4 @4xl:row-span-2
+							@4xl:col-start-6 @4xl:col-span-3 @4xl:row-start-4 @4xl:row-span-2
 							p-4 shadow-translucent flex flex-col
 						'
 						style={{ background: 'var(--t-surface)' }}
@@ -298,30 +299,30 @@ export default function AboutPage() {
 						<div className='flex flex-wrap @md:flex-nowrap gap-3 flex-1'>
 							<HobbyItem emoji='🍿' name='Cinema Nerd' />
 							<HobbyItem emoji='🖨️' name='3D Printing' />
+						</div>
+						<div className='flex flex-wrap @md:flex-nowrap gap-3 mt-3 flex-1'>
 							<HobbyItem emoji='🚜' name='Gardener' />
 							<HobbyItem emoji='🎮' name='Gamer' />
 						</div>
 					</div>
 
-					{/* ── 8. TECH STACK ── */}
+					{/* ── 8. TECH STACK — horizontal scrolling marquee ── */}
 					<div
 						className='
-							@sm:col-span-1
-							@4xl:col-start-8 @4xl:col-span-1 @4xl:row-start-3 @4xl:row-span-3
-							shadow-translucent relative overflow-hidden flex flex-col p-3 min-h-[160px]
+							@sm:col-span-2
+							@4xl:col-start-1 @4xl:col-span-5 @4xl:row-start-5
+							shadow-translucent relative overflow-hidden flex items-center gap-3 px-4 min-h-[60px]
 						'
 						style={{ background: 'var(--t-surface)' }}
 					>
-						<div className='mb-2 shrink-0'>
-							<h3
-								className='font-bold text-xl drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'
-								style={{ color: 'var(--t-accent-orange)' }}
-							>
-								Stack
-							</h3>
-						</div>
-						<div className='relative flex-1 overflow-hidden mask-image-gradient'>
-							<div className='absolute top-0 left-0 w-full animate-marquee-vertical flex flex-col gap-2'>
+						<h3
+							className='font-bold text-lg shrink-0 drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'
+							style={{ color: 'var(--t-accent-orange)' }}
+						>
+							Stack
+						</h3>
+						<div className='flex-1 overflow-hidden mask-image-gradient-x'>
+							<div className='flex flex-row gap-3 animate-marquee-horizontal w-max py-2'>
 								{[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
 									<TechBadge key={i} label={tech} />
 								))}
