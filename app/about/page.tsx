@@ -32,11 +32,8 @@ const HOBBIES = [
 ];
 
 const WIPProject = ({ name, progress, url }: { name: string; progress: number; url: string }) => (
-	<div
-		className='border-b-2 border-dashed last:border-b-0 py-2 first:pt-0'
-		style={{ borderColor: 'var(--t-border)' }}
-	>
-		<div className='flex justify-between items-center gap-2 mb-1.5'>
+	<div className='last:border-b-0 py-2 first:pt-0' style={{ borderColor: 'var(--t-border)' }}>
+		<div className='flex justify-between items-center'>
 			<h4 className='font-bold text-xl text-green-500 drop-shadow-[2px_2px_1px_rgba(0,0,0,1)] truncate leading-tight flex-1 min-w-0'>
 				{name}
 			</h4>
@@ -44,16 +41,16 @@ const WIPProject = ({ name, progress, url }: { name: string; progress: number; u
 				href={url}
 				target='_blank'
 				rel='noreferrer'
-				className='flex-shrink-0 border-double border-4 hover:bg-green-500 p-1.5 flex items-center shadow-translucent transition-all group/link'
+				className='flex-shrink-0 rounded-full my-1 flex items-center transition-all group/link'
 				style={{ borderColor: 'var(--t-border)' }}
 			>
-				<div className='relative inline-flex items-center justify-center w-4 h-4'>
+				<div className='relative inline-flex items-center justify-center w-6 h-6'>
 					<div className='absolute inset-0 bg-green-500 rounded-full animate-pulse' />
-					<VscGithub className='relative z-10 w-full h-full text-ink group-hover/link:text-white' />
+					<VscGithub className='relative z-10 w-full h-full text-ink group-bac group-hover/link:text-white' />
 				</div>
 			</a>
 		</div>
-		<div className='flex items-center gap-2'>
+		<div className='flex items-center '>
 			<div
 				className='flex-1 h-2 border overflow-hidden'
 				style={{ borderColor: 'var(--t-border)', background: 'var(--t-surface-faint)' }}
@@ -137,22 +134,22 @@ export default function AboutPage() {
 					{/* ── 1. COMBO — Portrait on top + Hello Again below (vertical) ── */}
 					<div
 						className='
-							@sm:col-span-4
-							@4xl:col-start-1 @4xl:col-span-6 @4xl:row-start-1 @4xl:row-span-8
-							shadow-translucent flex flex-col overflow-hidden
-						'
+    @sm:col-span-4
+    @4xl:col-start-1 @4xl:col-span-6 @4xl:row-start-1 @4xl:row-span-8
+    shadow-translucent flex flex-col overflow-hidden relative 
+  '
 						style={{ background: 'var(--t-surface)' }}
 					>
-						{/* Photo */}
+						{/* Photo — natural flow, sits above text */}
 						<div
-							className='relative w-full aspect-[4/5] shrink-0 border-b-4'
-							style={{ borderColor: 'var(--t-border)' }}
+							className='relative w-80 h-80 border-4 overflow-hidden shadow-lg shrink-0 self-center mt-8'
+							style={{ borderColor: 'var(--t-accent-blue)' }}
 						>
 							<Image
 								src={PERSONAL_INFO.headshot || '/placeholder.jpg'}
 								fill
 								alt='Krish Nalam'
-								className='object-cover object-top'
+								className='object-cover'
 							/>
 						</div>
 
@@ -237,22 +234,20 @@ export default function AboutPage() {
 						className='
 							@sm:col-span-2
 							@4xl:col-start-13 @4xl:col-span-4 @4xl:row-start-1 @4xl:row-span-6
-							p-3 shadow-translucent flex flex-row items-center gap-3 overflow-hidden min-h-[110px]
+							p-3 shadow-translucent flex flex-col items-center gap-2 overflow-hidden min-h-[110px]
 						'
 						style={{ background: 'var(--t-surface)' }}
 					>
-						<div className='min-w-0 shrink-0'>
+						<div className='shrink-0 text-center'>
 							<h3
 								className='font-bold text-lg leading-tight drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'
 								style={{ color: 'var(--t-accent-blue)' }}
 							>
-								Ready to
-								<br />
-								Connect?
+								Ready to Connect?
 							</h3>
 							<p className='text-xs text-dark-gray mt-1'>Drag the globe.</p>
 						</div>
-						<div className='flex-1 min-w-0 h-full'>
+						<div className='flex-1 w-full min-h-0'>
 							<Globe />
 						</div>
 					</div>
@@ -262,7 +257,7 @@ export default function AboutPage() {
 						className='
 							@sm:col-span-2
 							@4xl:col-start-7 @4xl:col-span-3 @4xl:row-start-6 @4xl:row-span-3
-							p-3 shadow-translucent flex flex-row items-center justify-center gap-3 relative overflow-hidden min-h-[60px]
+							p-3 shadow-translucent flex flex-col items-center justify-center gap-2 relative overflow-hidden min-h-[60px]
 						'
 						style={{ background: 'var(--t-surface)' }}
 					>
@@ -270,16 +265,17 @@ export default function AboutPage() {
 							className='absolute inset-0 opacity-10 pointer-events-none'
 							style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
 						/>
-						<p className='relative z-10 text-xs font-mono text-dark-gray uppercase tracking-widest leading-snug'>
-							Copy Email
-						</p>
 						<button
 							onClick={handleCopyEmail}
-							className='relative z-10 p-3 border-double border-4 border-purple-500 hover:bg-purple-700 hover:border-purple-400 text-purple-400 hover:text-white transition-all shadow-translucent'
+							className='relative z-10 flex items-center gap-2 px-4 py-2 border-double border-4 border-purple-500 hover:bg-purple-700 hover:border-purple-400 text-purple-400 hover:text-white transition-all shadow-translucent'
 							title='Copy dev@krishnalam.com'
 						>
-							<RiFileCopyFill className='text-2xl' />
+							<RiFileCopyFill className='text-xl' />
+							<span className='text-sm font-mono uppercase tracking-widest'>Copy Email</span>
 						</button>
+						<p className='relative z-10 text-xs font-mono text-dark-gray tracking-wide'>
+							dev@krishnalam.com
+						</p>
 					</div>
 
 					{/* ── 7. HOBBIES — character select carousel (Swiper) ── */}
@@ -396,12 +392,17 @@ export default function AboutPage() {
 						'
 						style={{ background: 'var(--t-surface)' }}
 					>
-						<h3
-							className='font-bold text-lg shrink-0 drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'
-							style={{ color: 'var(--t-accent-orange)' }}
-						>
-							Stack
-						</h3>
+						<div className='shrink-0 flex flex-col justify-center'>
+							<h3
+								className='font-bold text-lg leading-tight drop-shadow-[2px_2px_1px_rgba(0,0,0,1)]'
+								style={{ color: 'var(--t-accent-orange)' }}
+							>
+								Tech Stack
+							</h3>
+							<p className='text-xs font-mono' style={{ color: 'var(--t-ink-muted)' }}>
+								My go-to toolkit.
+							</p>
+						</div>
 						<div className='flex-1 overflow-hidden mask-image-gradient-x'>
 							<div className='flex flex-row gap-3 animate-marquee-horizontal w-max py-2'>
 								{[...TECH_STACK, ...TECH_STACK].map((tech, i) => (

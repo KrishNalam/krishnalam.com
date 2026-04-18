@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { RiFolderOpenFill } from 'react-icons/ri';
 
 export const DesktopFolder = ({
 	label,
@@ -13,24 +14,22 @@ export const DesktopFolder = ({
 }) => {
 	const pathname = usePathname();
 	const isActive = pathname === href;
+	const DisplayIcon = isActive ? RiFolderOpenFill : Icon;
 
 	return (
 		<Link href={href}>
 			<div
-				className={`flex flex-col items-center gap-1 sm:gap-2 cursor-pointer w-16 sm:w-28 p-1 sm:p-2 sm:pb-0 rounded-lg transition-colors border-2 border-transparent
-					${isActive ? 'bg-off-white border-[var(--t-border)] shadow-opaque' : 'hover:bg-white/10'}`}
+				className={`flex flex-col items-center gap-1 cursor-pointer w-14 sm:w-20 p-1 sm:p-2 select-none transition-colors ${
+					isActive
+						? 'border-2 border-dashed border-white/70'
+						: 'border-2 border-transparent hover:bg-white/10'
+				}`}
+				style={isActive ? { background: 'var(--t-titlebar)' } : undefined}
 			>
-				{/* Icon wrapper — CSS controls the responsive size */}
-				<div className='w-10 h-10 sm:w-16 sm:h-16 flex items-center justify-center'>
-					<Icon
-						size={64}
-						className='w-full h-full transition-transform drop-shadow-opaque fill-retro-yellow'
-					/>
+				<div className='w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center'>
+					<DisplayIcon size={48} className='w-full h-full drop-shadow-opaque fill-retro-yellow' />
 				</div>
-				<span
-					className={`text-sm sm:text-lg font-bold tracking-wide text-center select-none
-						${isActive ? 'text-dark-gray' : 'text-white'}`}
-				>
+				<span className='text-xs sm:text-sm font-bold tracking-wide text-center leading-tight text-white'>
 					{label}
 				</span>
 			</div>

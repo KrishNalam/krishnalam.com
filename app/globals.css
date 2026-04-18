@@ -3,41 +3,45 @@
 /* ─── DESIGN TOKENS ─── */
 
 :root {
-	/* Light theme (retro / Win95) */
-	--t-desktop-bg: #262626;
-	--t-grid-color: rgba(0, 0, 0, 0.45);
-	--t-surface: #ffffff;
-	--t-surface-dim: rgba(255, 255, 255, 0.92);
-	--t-surface-faint: rgba(255, 255, 255, 0.7);
-	--t-titlebar: #11408c;
+	/* Light theme — classic Win95 */
+	--t-desktop-bg: #008080;
+	--t-grid-color: rgba(0, 0, 0, 0.18);
+	--t-surface: #c0c0c0;
+	--t-surface-dim: rgba(192, 192, 192, 0.97);
+	--t-surface-faint: rgba(192, 192, 192, 0.6);
+	--t-titlebar: #000080;
+	--t-titlebar-end: #1a8fcc;
 	--t-titlebar-text: #ffffff;
 	--t-ink: #000000;
-	--t-ink-body: #262626;
-	--t-ink-muted: #737373;
-	--t-accent-blue: #11408c;
-	--t-accent-yellow: #f0d66e;
-	--t-accent-orange: #ff8600;
+	--t-ink-body: #1a1a1a;
+	--t-ink-muted: #555555;
+	--t-accent-blue: #000080;
+	--t-accent-yellow: #ffd700;
+	--t-accent-orange: #cc5500;
+	--t-accent-green: #008000;
 	--t-border: #000000;
-	--t-shadow: rgba(115, 115, 115, 1);
+	--t-shadow: rgba(0, 0, 0, 0.9);
 }
 
 [data-theme='dark'] {
-	/* Dark theme — deep navy Win95 */
-	--t-desktop-bg: #0d1421;
-	--t-grid-color: rgba(255, 255, 255, 0.04);
-	--t-surface: #1a2235;
-	--t-surface-dim: rgba(18, 25, 45, 0.97);
-	--t-surface-faint: rgba(26, 34, 55, 0.6);
-	--t-titlebar: #0e2d5e;
+	/* Dark theme — Win95 night / terminal */
+	--t-desktop-bg: #0d0d18;
+	--t-grid-color: rgba(80, 120, 220, 0.11);
+	--t-surface: #141428;
+	--t-surface-dim: rgba(18, 18, 40, 0.97);
+	--t-surface-faint: rgba(20, 20, 45, 0.6);
+	--t-titlebar: #00008b;
+	--t-titlebar-end: #1e5eb5;
 	--t-titlebar-text: #c8deff;
 	--t-ink: #dce8ff;
 	--t-ink-body: #c0cfea;
-	--t-ink-muted: #607090;
-	--t-accent-blue: #4a9eff;
-	--t-accent-yellow: #f0d66e;
+	--t-ink-muted: #5878a0;
+	--t-accent-blue: #5b9cf6;
+	--t-accent-yellow: #ffd700;
 	--t-accent-orange: #ff9a3c;
-	--t-border: #2a3d60;
-	--t-shadow: rgba(0, 0, 0, 0.7);
+	--t-accent-green: #00cc66;
+	--t-border: #1e3a6e;
+	--t-shadow: rgba(0, 0, 0, 0.8);
 }
 
 @theme inline {
@@ -55,6 +59,7 @@
 	--color-off-white: var(--t-surface-dim);
 	--color-dark-white: var(--t-surface-faint);
 	--color-retro-blue: var(--t-accent-blue);
+	--color-accent-green: var(--t-accent-green);
 
 	/* Shadows */
 	--shadow-translucent: 4px 4px 0px var(--t-shadow);
@@ -68,7 +73,6 @@ body {
 
 /* ─── CUSTOM SCROLLBARS ─── */
 
-/* Slim retro scroll — for WIP tile and other internal panels */
 .retro-scroll::-webkit-scrollbar {
 	width: 6px;
 }
@@ -87,7 +91,6 @@ body {
 	scrollbar-color: var(--t-accent-blue) transparent;
 }
 
-/* Full-weight scroll — for WindowFrame panels */
 .custom-scrollbar::-webkit-scrollbar {
 	width: 10px;
 }
@@ -107,6 +110,23 @@ body {
 	scrollbar-color: var(--t-accent-blue) var(--t-surface);
 }
 
+/* ─── WIN95 RAISED BUTTON ─── */
+
+.btn-win95 {
+	background: #c0c0c0;
+	color: #000000;
+	border-top: 2px solid #dfdfdf;
+	border-left: 2px solid #dfdfdf;
+	border-right: 2px solid #808080;
+	border-bottom: 2px solid #808080;
+}
+.btn-win95:active {
+	border-top: 2px solid #808080;
+	border-left: 2px solid #808080;
+	border-right: 2px solid #dfdfdf;
+	border-bottom: 2px solid #dfdfdf;
+}
+
 /* ─── ANIMATIONS ─── */
 
 @keyframes marquee-vertical {
@@ -123,6 +143,22 @@ body {
 
 .mask-image-gradient {
 	mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+@keyframes marquee-horizontal {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+.animate-marquee-horizontal {
+	animation: marquee-horizontal 20s linear infinite;
+}
+
+.mask-image-gradient-x {
+	mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 @keyframes typing-dots {
