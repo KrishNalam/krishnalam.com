@@ -10,7 +10,7 @@ export const DesktopNav = () => {
 			<div
 				className='hidden sm:flex items-center gap-1.5 px-2 py-1 mb-2 border-b-2 font-mono text-xs uppercase tracking-widest shrink-0'
 				style={{
-					background: 'linear-gradient(90deg, var(--t-titlebar) 0%, var(--t-titlebar-end) 100%)',
+					background: 'var(--t-titlebar)',
 					borderColor: 'var(--t-border)',
 					color: 'var(--t-titlebar-text)',
 				}}

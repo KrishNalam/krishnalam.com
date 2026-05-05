@@ -34,7 +34,7 @@ export const WindowFrame = ({ title, children }: { title: string; children: Reac
 		<div
 			className='p-1.5 pl-3 flex justify-between items-center border-b-4 border-[var(--t-border)] shrink-0 gap-2'
 			style={{
-				background: 'linear-gradient(90deg, var(--t-titlebar) 0%, var(--t-titlebar-end) 100%)',
+				background: 'var(--t-titlebar)',
 				color: 'var(--t-titlebar-text)',
 			}}
 		>

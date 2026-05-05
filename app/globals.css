@@ -25,22 +25,22 @@
 
 [data-theme='dark'] {
 	/* Dark theme — Win95 night / terminal */
-	--t-desktop-bg: #0d0d18;
-	--t-grid-color: rgba(80, 120, 220, 0.11);
-	--t-surface: #141428;
-	--t-surface-dim: rgba(18, 18, 40, 0.97);
-	--t-surface-faint: rgba(20, 20, 45, 0.6);
-	--t-titlebar: #00008b;
-	--t-titlebar-end: #1e5eb5;
-	--t-titlebar-text: #c8deff;
-	--t-ink: #dce8ff;
-	--t-ink-body: #c0cfea;
-	--t-ink-muted: #5878a0;
-	--t-accent-blue: #5b9cf6;
+	--t-desktop-bg: #111111;
+	--t-grid-color: rgba(255, 255, 255, 0.06);
+	--t-surface: #1a1a1a;
+	--t-surface-dim: rgba(22, 22, 22, 0.97);
+	--t-surface-faint: rgba(24, 24, 24, 0.6);
+	--t-titlebar: #2c2c2c;
+	--t-titlebar-end: #2c2c2c;
+	--t-titlebar-text: #ffffff;
+	--t-ink: #f2f2f2;
+	--t-ink-body: #c8c8c8;
+	--t-ink-muted: #888888;
+	--t-accent-blue: #ffffff;
 	--t-accent-yellow: #ffd700;
 	--t-accent-orange: #ff9a3c;
 	--t-accent-green: #00cc66;
-	--t-border: #1e3a6e;
+	--t-border: #ffffff;
 	--t-shadow: rgba(0, 0, 0, 0.8);
 }
 

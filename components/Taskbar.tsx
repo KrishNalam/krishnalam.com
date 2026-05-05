@@ -35,7 +35,7 @@ export const Taskbar = () => {
 				href='/'
 				className='flex items-center gap-1.5 px-3 py-0.5 border-2 font-bold uppercase tracking-wider hover:opacity-80 transition-opacity shrink-0'
 				style={{
-					background: 'linear-gradient(90deg, var(--t-titlebar) 0%, var(--t-titlebar-end) 100%)',
+					background: 'var(--t-titlebar)',
 					borderColor: 'var(--t-border)',
 					color: 'var(--t-titlebar-text)',
 				}}
