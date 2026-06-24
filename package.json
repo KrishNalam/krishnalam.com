@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "0.1.0",
+  "version": "4.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,19 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@tabler/icons-react": "^3.36.1",
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
-    "cobe": "^0.6.5",
     "framer-motion": "^12.24.7",
     "lucide-react": "^0.562.0",
-    "motion": "^12.24.7",
     "next": "^16.2.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-icons": "^5.5.0",
-    "recharts": "^3.8.1",
-    "swiper": "^12.1.3",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

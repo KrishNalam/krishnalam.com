@@ -1,31 +1,32 @@
 'use client';
-import { useEffect, useState } from 'react';
 
-export const ThemeToggle = () => {
-	const [dark, setDark] = useState(true);
+import { AnimatePresence, motion } from 'framer-motion';
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from './ThemeProvider';
 
-	useEffect(() => {
-		const stored = localStorage.getItem('theme') ?? 'dark';
-		const isDark = stored === 'dark';
-		setDark(isDark);
-		document.documentElement.setAttribute('data-theme', stored);
-	}, []);
-
-	const toggle = () => {
-		const next = !dark;
-		const theme = next ? 'dark' : 'light';
-		setDark(next);
-		document.documentElement.setAttribute('data-theme', theme);
-		localStorage.setItem('theme', theme);
-	};
+export function ThemeToggle() {
+	const { theme, toggle } = useTheme();
+	const isDark = theme === 'dark';
 
 	return (
 		<button
+			type="button"
 			onClick={toggle}
-			title={dark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-			className='text-xl border-2 border-white/60 px-3 py-1 hover:border-white hover:bg-white/10 transition-all font-mono uppercase tracking-widest text-white/80 hover:text-white shrink-0'
+			aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+			className="relative grid size-9 place-items-center rounded-full border border-line text-ink-2 transition-colors hover:border-line-strong hover:text-ink"
 		>
-			{dark ? '[ ☀ LIGHT ]' : '[ ☾ DARK ]'}
+			<AnimatePresence mode="wait" initial={false}>
+				<motion.span
+					key={theme}
+					initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
+					animate={{ rotate: 0, opacity: 1, scale: 1 }}
+					exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
+					transition={{ duration: 0.2 }}
+					className="absolute"
+				>
+					{isDark ? <Moon size={16} /> : <Sun size={16} />}
+				</motion.span>
+			</AnimatePresence>
 		</button>
 	);
-};
+}
