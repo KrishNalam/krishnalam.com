@@ -11,7 +11,7 @@ export const PERSONAL = {
 	name: 'Krish Nalam',
 	monogram: 'KN',
 	role: 'Software & ML Engineer',
-	tagline: 'I build systems that quietly just work — from RAG pipelines and CI/CD to ETL moving 30GB+ a week.',
+	tagline: 'Building ML and infrastructure that scales — RAG pipelines, CI/CD, and ETL moving 30GB+ a week.',
 	location: 'Toronto, ON',
 	email: 'dev.nalamkrish@gmail.com',
 	headshot: '/Headshot.jpeg',

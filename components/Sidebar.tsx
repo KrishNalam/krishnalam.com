@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { Coffee, Code2, BrainCircuit } from 'lucide-react';
 import { PERSONAL, SOCIALS } from '@/data/config';
 import { cn } from '@/lib/cn';
 import { ThemeToggle } from './ThemeToggle';
@@ -15,11 +14,7 @@ const NAV = [
 	{ id: 'logbook', label: 'Logbook' },
 ];
 
-const MOTTO = [
-	{ icon: Coffee, label: 'Coffee' },
-	{ icon: Code2, label: 'Code' },
-	{ icon: BrainCircuit, label: 'Concentration' },
-];
+const MOTTO = ['Coffee', 'Code', 'Concentration'];
 
 export function Sidebar() {
 	const [active, setActive] = useState('about');
@@ -76,22 +71,16 @@ export function Sidebar() {
 						<h2 className="mt-1.5 text-base font-medium tracking-tight text-ink-2 sm:text-lg">
 							{PERSONAL.role}
 						</h2>
+						<p className="mt-2 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.05em] text-ink-3">
+							{MOTTO.join(' · ')}
+						</p>
 					</div>
 				</div>
 
-				{/* Motto */}
-				<ul className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs uppercase tracking-[0.16em] text-ink-3">
-					{MOTTO.map(({ icon: Icon, label }, i) => (
-						<li key={label} className="flex items-center gap-2">
-							<Icon className="size-4 text-ink-2" aria-hidden />
-							{label}
-							{i < MOTTO.length - 1 && <span className="ml-2 text-line-strong">/</span>}
-						</li>
-					))}
-				</ul>
+				<p className="mt-8 max-w-sm leading-relaxed text-ink-2">{PERSONAL.tagline}</p>
 
 				{/* Availability status with a live pulse */}
-				<p className="mt-5 inline-flex items-center gap-2.5 text-sm text-ink-2">
+				<p className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-line px-3.5 py-1.5 text-sm text-ink-2">
 					<span className="relative flex size-2">
 						<span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
 						<span className="relative inline-flex size-2 rounded-full bg-accent" />
@@ -133,9 +122,9 @@ export function Sidebar() {
 				</nav>
 			</div>
 
-			{/* Socials + UofT Webring */}
-			<div className="mt-10 flex flex-col gap-6 lg:mt-0">
-				<ul className="flex items-center gap-6">
+			{/* Socials, then a divided row with the UofT Webring and theme switch */}
+			<div className="mt-10 max-w-sm lg:mt-0">
+				<ul className="flex items-center justify-between">
 					{SOCIALS.map(({ name, url, icon: Icon }) => (
 						<li key={name}>
 							<a
@@ -150,7 +139,7 @@ export function Sidebar() {
 						</li>
 					))}
 				</ul>
-				<div className="flex items-center gap-6">
+				<div className="mt-6 flex items-center justify-between border-t border-line pt-6">
 					<Webring />
 					<ThemeToggle />
 				</div>
