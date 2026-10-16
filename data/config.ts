@@ -22,6 +22,7 @@ export const PERSONAL = {
 export const LINKS = {
 	resume: '/Krish_Nalam_Resume.pdf',
 	archive: '/archive',
+	experience: '/experience',
 } as const;
 
 export type Social = {
@@ -61,10 +62,7 @@ export const EXPERIENCES: Experience[] = [
 		location: 'Toronto, ON',
 		start: 'Sep 2026',
 		end: 'Present',
-		bullets: [
-			'Developing Knowledge AI, an internal retrieval-augmented generation platform: parsing heterogeneous document formats, chunking, and embedding them into a vector index for retrieval.',
-			'Extending the generation stage so answers are grounded in retrieved context and traceable to source passages, evaluated on retrieval quality, not fluency.',
-		],
+		bullets: [],
 		stack: ['Python', 'RAG', 'FastAPI', 'Vector Search', 'Docker', 'Kubernetes'],
 		logo: '/rbc-borealis.png',
 	},
@@ -75,9 +73,7 @@ export const EXPERIENCES: Experience[] = [
 		location: 'Toronto, ON',
 		start: 'Sep 2026',
 		end: 'Present',
-		bullets: [
-			'Building software for Zeus, U of T’s student-led self-driving car competing in the SAE AutoDrive Challenge.',
-		],
+		bullets: [],
 		stack: ['Python', 'C++', 'Linux'],
 		logo: '/autoronto.png',
 	},
@@ -120,6 +116,7 @@ export const EXPERIENCES: Experience[] = [
 			'Moved the client from React to React Native, cutting re-renders 60% with Redux and client-side caching.',
 		],
 		stack: ['React Native', 'Redux', 'Node.js', 'AWS', 'Docker', 'MongoDB'],
+		logo: '/unicomm.svg',
 	},
 	{
 		role: 'Back-End Developer Intern',
@@ -164,6 +161,13 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
 	{
+		title: 'Project Tantalus',
+		description: 'Coming soon.',
+		bullets: [],
+		stack: [],
+		comingSoon: true,
+	},
+	{
 		title: 'Lens',
 		description: 'An agentic research assistant that plans multi-step research and cites verified sources.',
 		bullets: [
@@ -203,13 +207,6 @@ export const PROJECTS: Project[] = [
 		stack: ['Next.js', 'MongoDB', 'LangChain', 'Tailwind'],
 		url: 'https://github.com/m-shao/hack-the-valley',
 		award: 'Winner @ HackTheValley',
-	},
-	{
-		title: 'Project Tantalus',
-		description: 'Coming soon.',
-		bullets: [],
-		stack: [],
-		comingSoon: true,
 	},
 ];
 

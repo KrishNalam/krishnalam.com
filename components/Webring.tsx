@@ -11,7 +11,7 @@ export function Webring() {
 					aria-label="Previous site in the UofT Webring"
 					className="text-ink-3 transition-colors hover:text-ink"
 				>
-					<ChevronLeft className="size-5" />
+					<ChevronLeft className="size-6" />
 				</a>
 				<a
 					href={WEBRING.home}
@@ -21,14 +21,14 @@ export function Webring() {
 					className="transition-opacity hover:opacity-80"
 				>
 					{/* eslint-disable-next-line @next/next/no-img-element */}
-					<img src={WEBRING.logo} alt="UofT Webring" className="size-8" />
+					<img src={WEBRING.logo} alt="UofT Webring" className="size-11" />
 				</a>
 				<a
 					href={WEBRING.next}
 					aria-label="Next site in the UofT Webring"
 					className="text-ink-3 transition-colors hover:text-ink"
 				>
-					<ChevronRight className="size-5" />
+					<ChevronRight className="size-6" />
 				</a>
 			</div>
 		</div>

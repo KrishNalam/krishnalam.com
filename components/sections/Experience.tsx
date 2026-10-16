@@ -13,14 +13,14 @@ function monogram(company: string) {
 		.toUpperCase();
 }
 
-export function Experience() {
+export function Experience({ limit }: { limit?: number }) {
 	return (
 		<section id="experience" className="mb-16 scroll-mt-16 lg:mb-28" aria-label="Work experience">
 			<SectionHeading>Experience</SectionHeading>
 
 			{/* group/list powers the "dim the rest, light up the hovered one" effect */}
 			<ol className="group/list">
-				{EXPERIENCES.map((job) => (
+				{EXPERIENCES.slice(0, limit).map((job) => (
 					<li key={`${job.company}-${job.start}`} className="mb-10">
 						<div className="group relative grid gap-4 pb-1 transition-all motion-reduce:transition-none sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-40">
 							{/* Hover highlight slab */}
@@ -28,23 +28,23 @@ export function Experience() {
 
 							<header className="z-10 flex items-center gap-3 sm:col-span-2 sm:flex-col sm:items-start sm:gap-3">
 								{/* White tile keeps full-colour marks legible in both themes */}
-								<span className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-white p-2 ring-1 ring-line">
+								<span className="flex size-16 shrink-0 items-center justify-center rounded-xl bg-white p-2 ring-1 ring-line">
 									{job.logo ? (
 										// eslint-disable-next-line @next/next/no-img-element
 										<img src={job.logo} alt={job.company} className="size-full object-contain" />
 									) : (
-										<span className="font-display text-sm font-bold tracking-tight text-[#16161a]">
+										<span className="font-display text-base font-bold tracking-tight text-[#16161a]">
 											{monogram(job.company)}
 										</span>
 									)}
 								</span>
-								<span className="eyebrow mt-1 text-ink-3">
+								<span className="eyebrow mt-1 text-ink-3" style={{ fontSize: '0.8rem' }}>
 									{job.start} — {job.end}
 								</span>
 							</header>
 
 							<div className="z-10 sm:col-span-6">
-								<h3 className="font-medium leading-snug text-ink">
+								<h3 className="text-lg font-medium leading-snug text-ink">
 									{job.role}{' '}
 									<span className="text-ink-2">
 										·{' '}
@@ -63,19 +63,21 @@ export function Experience() {
 									</span>
 								</h3>
 
-								<ul className="mt-3 space-y-2">
-									{job.bullets.map((b, i) => (
-										<li key={i} className="flex gap-3 text-sm leading-relaxed">
-											<span className="mt-2 size-1 shrink-0 rounded-full bg-ink-3" />
-											{b}
-										</li>
-									))}
-								</ul>
+								{job.bullets.length > 0 && (
+									<ul className="mt-3 space-y-2">
+										{job.bullets.map((b, i) => (
+											<li key={i} className="flex gap-3 text-base leading-relaxed">
+												<span className="mt-2.5 size-1 shrink-0 rounded-full bg-ink-3" />
+												{b}
+											</li>
+										))}
+									</ul>
+								)}
 
 								<ul className="mt-4 flex flex-wrap gap-1.5">
 									{job.stack.map((tech) => (
 										<li key={tech}>
-											<span className="inline-flex rounded-full bg-accent-soft px-3 py-1 text-xs font-medium leading-5 text-accent">
+											<span className="inline-flex rounded-full bg-accent-soft px-3 py-1 text-sm font-medium leading-5 text-accent">
 												{tech}
 											</span>
 										</li>

@@ -122,6 +122,15 @@ section[id] {
 	text-transform: uppercase;
 }
 
+/* Sidebar nav labels; the current section is larger and bold */
+.nav-label {
+	font-size: 0.85rem;
+}
+a[aria-current='location'] .nav-label {
+	font-size: 1.1rem;
+	font-weight: 700;
+}
+
 /* Animated underline for inline links */
 .link-underline {
 	background-image: linear-gradient(var(--accent), var(--accent));

@@ -1,9 +1,10 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
+import { cn } from '@/lib/cn';
 import { useTheme } from './ThemeProvider';
 
+/** Sun/moon switch: the knob slides to the active theme. */
 export function ThemeToggle() {
 	const { theme, toggle } = useTheme();
 	const isDark = theme === 'dark';
@@ -11,22 +12,21 @@ export function ThemeToggle() {
 	return (
 		<button
 			type="button"
+			role="switch"
+			aria-checked={isDark}
+			aria-label="Dark theme"
 			onClick={toggle}
-			aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
-			className="relative grid size-9 place-items-center rounded-full border border-line text-ink-2 transition-colors hover:border-line-strong hover:text-ink"
+			className="relative flex h-9 w-[4.5rem] items-center justify-between rounded-full border border-line-strong px-2.5 text-ink-3 transition-colors hover:text-ink-2"
 		>
-			<AnimatePresence mode="wait" initial={false}>
-				<motion.span
-					key={theme}
-					initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
-					animate={{ rotate: 0, opacity: 1, scale: 1 }}
-					exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
-					transition={{ duration: 0.2 }}
-					className="absolute"
-				>
-					{isDark ? <Moon size={16} /> : <Sun size={16} />}
-				</motion.span>
-			</AnimatePresence>
+			<span
+				aria-hidden
+				className={cn(
+					'absolute left-1 top-1/2 size-7 -translate-y-1/2 rounded-full bg-accent transition-transform duration-300 motion-reduce:transition-none',
+					isDark && 'translate-x-[34px]'
+				)}
+			/>
+			<Sun size={16} className={cn('relative transition-colors', !isDark && 'text-accent-ink')} />
+			<Moon size={16} className={cn('relative transition-colors', isDark && 'text-accent-ink')} />
 		</button>
 	);
 }

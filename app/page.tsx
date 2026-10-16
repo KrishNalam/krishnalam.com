@@ -24,10 +24,15 @@ export default function Home() {
 					<main id="content" className="pt-20 lg:w-[55%] lg:py-24">
 						<About />
 						<TechMarquee />
-						<Experience />
-						<CtaButton href={LINKS.resume}>View Full Résumé</CtaButton>
+						<Experience limit={4} />
+						<CtaButton
+							links={[
+								{ href: LINKS.experience, label: 'View Full Work History' },
+								{ href: LINKS.resume, label: 'View Full Résumé' },
+							]}
+						/>
 						<Projects />
-						<CtaButton href={LINKS.archive}>View Full Project Archive</CtaButton>
+						<CtaButton links={[{ href: LINKS.archive, label: 'View Full Project Archive' }]} />
 						<Logbook />
 						<Footer />
 					</main>

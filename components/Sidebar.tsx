@@ -106,16 +106,20 @@ export function Sidebar() {
 							const isActive = active === id;
 							return (
 								<li key={id}>
-									<a href={`#${id}`} className="group flex items-center py-2">
+									<a
+										href={`#${id}`}
+										aria-current={isActive ? 'location' : undefined}
+										className="group flex items-center py-2"
+									>
 										<span
 											className={cn(
 												'mr-4 h-px bg-ink-3 transition-all duration-300 motion-reduce:transition-none group-hover:w-16 group-hover:bg-accent',
-												isActive ? 'w-16 bg-accent' : 'w-8'
+												isActive ? 'h-0.5 w-20 bg-accent' : 'w-8'
 											)}
 										/>
 										<span
 											className={cn(
-												'eyebrow transition-colors group-hover:text-ink',
+												'eyebrow nav-label transition-all duration-300 group-hover:text-ink motion-reduce:transition-none',
 												isActive ? 'text-ink' : 'text-ink-3'
 											)}
 										>
@@ -131,7 +135,7 @@ export function Sidebar() {
 
 			{/* Socials + UofT Webring */}
 			<div className="mt-10 flex flex-col gap-6 lg:mt-0">
-				<ul className="flex items-center gap-5">
+				<ul className="flex items-center gap-6">
 					{SOCIALS.map(({ name, url, icon: Icon }) => (
 						<li key={name}>
 							<a
@@ -141,7 +145,7 @@ export function Sidebar() {
 								aria-label={name}
 								className="block text-ink-3 transition-colors hover:text-accent"
 							>
-								<Icon className="size-6" />
+								<Icon className="size-7" />
 							</a>
 						</li>
 					))}
