@@ -39,8 +39,7 @@ export function Sidebar() {
 			}
 			// Pin the last section once we've reached the bottom of the page.
 			const atBottom =
-				Math.ceil(window.innerHeight + window.scrollY) >=
-				document.documentElement.scrollHeight - 2;
+				Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 2;
 			if (atBottom) current = ids[ids.length - 1];
 			setActive(current);
 		};
@@ -79,25 +78,29 @@ export function Sidebar() {
 					</div>
 				</div>
 
-				{/* External links, right under the name so they're seen first */}
-				<ul className="mt-6 flex items-center gap-5" aria-label="Links">
-					{SOCIALS.map(({ name, url, icon: Icon }) => (
-						<li key={name}>
-							<a
-								href={url}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={name}
-								className="block text-ink-3 transition-colors hover:text-accent"
-							>
-								<Icon className="size-6" />
-							</a>
-						</li>
-					))}
-				</ul>
+				{/* External links + UofT Webring, right under the name so they're seen first */}
+				<div className="mt-7 flex items-center gap-5 sm:gap-6">
+					<ul className="flex items-center gap-4 sm:gap-5" aria-label="Links">
+						{SOCIALS.map(({ name, url, icon: Icon }) => (
+							<li key={name}>
+								<a
+									href={url}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={name}
+									className="block text-ink-3 transition-colors hover:text-accent"
+								>
+									<Icon className="size-6 sm:size-7" />
+								</a>
+							</li>
+						))}
+					</ul>
+					<span className="h-8 w-px bg-line-strong" aria-hidden />
+					<Webring />
+				</div>
 
 				{/* Motto */}
-				<ul className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs uppercase tracking-[0.16em] text-ink-3">
+				<ul className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs uppercase tracking-[0.1em] text-ink-3">
 					{MOTTO.map(({ icon: Icon, label }, i) => (
 						<li key={label} className="flex items-center gap-2">
 							<Icon className="size-4 text-ink-2" aria-hidden />
@@ -115,9 +118,12 @@ export function Sidebar() {
 					</span>
 					{PERSONAL.availability}
 				</p>
+			</div>
 
+			{/* Bottom group: section nav + theme switch, balancing the header's weight */}
+			<div className="mt-10 lg:mt-0">
 				{/* Animated indicator nav (desktop) */}
-				<nav className="mt-16 hidden lg:block" aria-label="In-page">
+				<nav className="mb-10 hidden lg:block" aria-label="In-page">
 					<ul className="space-y-2">
 						{NAV.map(({ id, label }) => {
 							const isActive = active === id;
@@ -131,13 +137,13 @@ export function Sidebar() {
 										<span
 											className={cn(
 												'mr-4 h-px bg-ink-3 transition-all duration-300 motion-reduce:transition-none group-hover:w-16 group-hover:bg-accent',
-												isActive ? 'h-0.5 w-20 bg-accent' : 'w-8'
+												isActive ? 'h-0.5 w-20 bg-accent' : 'w-8',
 											)}
 										/>
 										<span
 											className={cn(
 												'eyebrow nav-label transition-all duration-300 group-hover:text-ink motion-reduce:transition-none',
-												isActive ? 'text-ink' : 'text-ink-3'
+												isActive ? 'text-ink' : 'text-ink-3',
 											)}
 										>
 											{label}
@@ -148,11 +154,6 @@ export function Sidebar() {
 						})}
 					</ul>
 				</nav>
-			</div>
-
-			{/* UofT Webring + theme switch */}
-			<div className="mt-10 flex items-center gap-6 lg:mt-0">
-				<Webring />
 				<ThemeToggle />
 			</div>
 		</header>
