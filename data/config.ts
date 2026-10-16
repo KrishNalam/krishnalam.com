@@ -15,7 +15,6 @@ export const PERSONAL = {
 	location: 'Toronto, ON',
 	email: 'dev.nalamkrish@gmail.com',
 	headshot: '/Headshot.jpeg',
-	availability: 'Currently ML Engineer Intern @ RBC Borealis',
 } as const;
 
 // Destinations for the between-section CTAs. The résumé PDF lives in this repo (public/).

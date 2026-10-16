@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { Coffee, Code2, BrainCircuit } from 'lucide-react';
 import { PERSONAL, SOCIALS } from '@/data/config';
 import { cn } from '@/lib/cn';
 import { ThemeToggle } from './ThemeToggle';
@@ -15,11 +14,7 @@ const NAV = [
 	{ id: 'logbook', label: 'Logbook' },
 ];
 
-const MOTTO = [
-	{ icon: Coffee, label: 'Coffee' },
-	{ icon: Code2, label: 'Code' },
-	{ icon: BrainCircuit, label: 'Concentration' },
-];
+const MOTTO = ['Coffee', 'Code', 'Concentration'];
 
 export function Sidebar() {
 	const [active, setActive] = useState('about');
@@ -54,29 +49,30 @@ export function Sidebar() {
 	}, []);
 
 	return (
-		<header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
+		<header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:gap-8 lg:py-24 short:py-12">
 			<div>
-				{/* Header — avatar paired with name + role */}
-				<div className="flex items-center gap-5">
+				{/* Large avatar with name, role, and motto stacked underneath. On mobile the
+				    theme switch sits top-right, level with the avatar. */}
+				<div className="flex items-start justify-between">
 					<Image
 						src={PERSONAL.headshot}
 						alt={PERSONAL.name}
-						width={144}
-						height={144}
+						width={320}
+						height={320}
 						priority
-						className="size-24 shrink-0 rounded-2xl object-cover ring-1 ring-line transition-all duration-300 hover:ring-2 hover:ring-accent sm:size-28"
+						className="size-32 shrink-0 rounded-3xl object-cover ring-1 ring-line transition-all duration-300 hover:ring-2 hover:ring-accent sm:size-40 lg:size-44 short:size-24"
 					/>
-					<div className="min-w-0">
-						<a href="#content" className="group inline-block">
-							<h1 className="font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-[2.6rem]">
-								{PERSONAL.name}
-							</h1>
-						</a>
-						<h2 className="mt-1.5 text-base font-medium tracking-tight text-ink-2 sm:text-lg">
-							{PERSONAL.role}
-						</h2>
+					<div className="lg:hidden">
+						<ThemeToggle />
 					</div>
 				</div>
+				<a href="#content" className="mt-6 inline-block short:mt-4">
+					<h1 className="font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
+						{PERSONAL.name}
+					</h1>
+				</a>
+				<h2 className="mt-1.5 text-lg font-medium tracking-tight text-ink-2 sm:text-xl">{PERSONAL.role}</h2>
+				<p className="mt-3 font-mono text-xs uppercase tracking-[0.16em] text-ink-3">{MOTTO.join(' · ')}</p>
 
 				{/* External links + UofT Webring, right under the name so they're seen first */}
 				<div className="mt-7 flex items-center gap-5 sm:gap-6">
@@ -99,31 +95,12 @@ export function Sidebar() {
 					<Webring />
 				</div>
 
-				{/* Motto */}
-				<ul className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs uppercase tracking-[0.1em] text-ink-3">
-					{MOTTO.map(({ icon: Icon, label }, i) => (
-						<li key={label} className="flex items-center gap-2">
-							<Icon className="size-4 text-ink-2" aria-hidden />
-							{label}
-							{i < MOTTO.length - 1 && <span className="ml-2 text-line-strong">/</span>}
-						</li>
-					))}
-				</ul>
-
-				{/* Availability status with a live pulse */}
-				<p className="mt-5 inline-flex items-center gap-2.5 text-sm text-ink-2">
-					<span className="relative flex size-2">
-						<span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
-						<span className="relative inline-flex size-2 rounded-full bg-accent" />
-					</span>
-					{PERSONAL.availability}
-				</p>
 			</div>
 
 			{/* Bottom group: section nav + theme switch, balancing the header's weight */}
-			<div className="mt-10 lg:mt-0">
+			<div className="lg:mt-0">
 				{/* Animated indicator nav (desktop) */}
-				<nav className="mb-10 hidden lg:block" aria-label="In-page">
+				<nav className="mb-10 hidden lg:block short:mb-6" aria-label="In-page">
 					<ul className="space-y-2">
 						{NAV.map(({ id, label }) => {
 							const isActive = active === id;
@@ -154,7 +131,9 @@ export function Sidebar() {
 						})}
 					</ul>
 				</nav>
-				<ThemeToggle />
+				<div className="hidden lg:block">
+					<ThemeToggle />
+				</div>
 			</div>
 		</header>
 	);
