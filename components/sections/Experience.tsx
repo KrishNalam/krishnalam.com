@@ -27,18 +27,17 @@ export function Experience() {
 							<div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-lg transition motion-reduce:transition-none lg:block lg:group-hover:bg-surface lg:group-hover:shadow-[inset_0_0_0_1px_var(--line)]" />
 
 							<header className="z-10 flex items-center gap-3 sm:col-span-2 sm:flex-col sm:items-start sm:gap-3">
-								{job.logo ? (
-									// eslint-disable-next-line @next/next/no-img-element
-									<img
-										src={job.logo}
-										alt={job.company}
-										className="size-16 shrink-0 object-contain"
-									/>
-								) : (
-									<span className="flex size-16 shrink-0 items-center justify-center font-display text-xl font-bold tracking-tight text-ink">
-										{monogram(job.company)}
-									</span>
-								)}
+								{/* White tile keeps full-colour marks legible in both themes */}
+								<span className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-white p-2 ring-1 ring-line">
+									{job.logo ? (
+										// eslint-disable-next-line @next/next/no-img-element
+										<img src={job.logo} alt={job.company} className="size-full object-contain" />
+									) : (
+										<span className="font-display text-sm font-bold tracking-tight text-[#16161a]">
+											{monogram(job.company)}
+										</span>
+									)}
+								</span>
 								<span className="eyebrow mt-1 text-ink-3">
 									{job.start} — {job.end}
 								</span>
@@ -46,7 +45,22 @@ export function Experience() {
 
 							<div className="z-10 sm:col-span-6">
 								<h3 className="font-medium leading-snug text-ink">
-									{job.role} <span className="text-ink-2">· {job.company}</span>
+									{job.role}{' '}
+									<span className="text-ink-2">
+										·{' '}
+										{job.url ? (
+											<a
+												href={job.url}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent"
+											>
+												{job.company}
+											</a>
+										) : (
+											job.company
+										)}
+									</span>
 								</h3>
 
 								<ul className="mt-3 space-y-2">

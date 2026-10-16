@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Coffee, Code2, BrainCircuit } from 'lucide-react';
 import { PERSONAL, SOCIALS } from '@/data/config';
 import { cn } from '@/lib/cn';
+import { ThemeToggle } from './ThemeToggle';
 import { Webring } from './Webring';
 
 const NAV = [
@@ -145,7 +146,10 @@ export function Sidebar() {
 						</li>
 					))}
 				</ul>
-				<Webring />
+				<div className="flex items-center gap-6">
+					<Webring />
+					<ThemeToggle />
+				</div>
 			</div>
 		</header>
 	);

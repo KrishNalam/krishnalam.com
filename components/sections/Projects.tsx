@@ -16,21 +16,31 @@ export function Projects() {
 
 							<div className="relative z-10">
 								<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-									<h3>
-										<a
-											href={project.url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="group/link inline-flex items-baseline text-lg font-medium leading-tight text-ink transition-colors hover:text-accent focus-visible:text-accent"
-										>
-											{/* Full-card hit target so the whole row is clickable */}
-											<span className="absolute -inset-x-4 -inset-y-4 hidden rounded-lg lg:block" />
-											<span>
-												{project.title}
-												<ArrowUpRight className="ml-1 inline-block size-4 shrink-0 translate-y-px transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 motion-reduce:transition-none" />
-											</span>
-										</a>
+									<h3 className="text-lg font-medium leading-tight text-ink">
+										{project.url ? (
+											<a
+												href={project.url}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="group/link inline-flex items-baseline transition-colors hover:text-accent focus-visible:text-accent"
+											>
+												{/* Full-card hit target so the whole row is clickable */}
+												<span className="absolute -inset-x-4 -inset-y-4 hidden rounded-lg lg:block" />
+												<span>
+													{project.title}
+													<ArrowUpRight className="ml-1 inline-block size-4 shrink-0 translate-y-px transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 motion-reduce:transition-none" />
+												</span>
+											</a>
+										) : (
+											project.title
+										)}
 									</h3>
+
+									{project.comingSoon && (
+										<span className="eyebrow rounded-full border border-line px-2.5 py-1 text-ink-3">
+											Coming soon
+										</span>
+									)}
 
 									{project.award && (
 										<span className="relative z-10 inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-1 text-xs font-bold text-accent-ink shadow-sm ring-1 ring-accent/30">
@@ -40,26 +50,32 @@ export function Projects() {
 									)}
 								</div>
 
-								<p className="mt-2 leading-relaxed text-ink-2">{project.description}</p>
+								{!project.comingSoon && (
+									<p className="mt-2 leading-relaxed text-ink-2">{project.description}</p>
+								)}
 
-								<ul className="mt-3 space-y-1.5">
-									{project.bullets.map((b, i) => (
-										<li key={i} className="flex gap-3 text-sm leading-relaxed text-ink-2">
-											<span className="mt-2 size-1 shrink-0 rounded-full bg-ink-3" />
-											{b}
-										</li>
-									))}
-								</ul>
+								{project.bullets.length > 0 && (
+									<ul className="mt-3 space-y-1.5">
+										{project.bullets.map((b, i) => (
+											<li key={i} className="flex gap-3 text-sm leading-relaxed text-ink-2">
+												<span className="mt-2 size-1 shrink-0 rounded-full bg-ink-3" />
+												{b}
+											</li>
+										))}
+									</ul>
+								)}
 
-								<ul className="mt-4 flex flex-wrap gap-1.5">
-									{project.stack.map((tech) => (
-										<li key={tech}>
-											<span className="inline-flex rounded-full bg-accent-soft px-3 py-1 text-xs font-medium leading-5 text-accent">
-												{tech}
-											</span>
-										</li>
-									))}
-								</ul>
+								{project.stack.length > 0 && (
+									<ul className="mt-4 flex flex-wrap gap-1.5">
+										{project.stack.map((tech) => (
+											<li key={tech}>
+												<span className="inline-flex rounded-full bg-accent-soft px-3 py-1 text-xs font-medium leading-5 text-accent">
+													{tech}
+												</span>
+											</li>
+										))}
+									</ul>
+								)}
 							</div>
 						</div>
 					</li>

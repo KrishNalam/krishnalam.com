@@ -6,6 +6,8 @@ export function Logbook() {
 		<section id="logbook" className="mb-16 scroll-mt-16 lg:mb-28" aria-label="Learning logbook">
 			<SectionHeading>Logbook</SectionHeading>
 
+			{LOGBOOK.length === 0 && <p className="text-ink-3">Coming soon.</p>}
+
 			<ol className="group/list">
 				{LOGBOOK.map((entry) => (
 					<li key={entry.date + entry.title} className="mb-10">

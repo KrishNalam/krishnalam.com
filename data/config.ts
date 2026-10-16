@@ -1,6 +1,6 @@
 import type { IconType } from 'react-icons';
 import { FiGithub, FiLinkedin, FiFileText, FiMail } from 'react-icons/fi';
-import { SiDevpost } from 'react-icons/si';
+import { FaXTwitter } from 'react-icons/fa6';
 
 /* ─────────────────────────────────────────────────────────────
    Single source of truth for all site content.
@@ -10,18 +10,17 @@ import { SiDevpost } from 'react-icons/si';
 export const PERSONAL = {
 	name: 'Krish Nalam',
 	monogram: 'KN',
-	role: 'Software Developer',
-	tagline: 'I build scalable systems — from ETL pipelines moving 30GB+ to serverless infra handling 10k req/min.',
-	motto: '☕ Coffee · 💻 Code · 🧠 Concentration',
+	role: 'Software & ML Engineer',
+	tagline: 'I build systems that quietly just work — from RAG pipelines and CI/CD to ETL moving 30GB+ a week.',
 	location: 'Toronto, ON',
-	email: 'nalamkrish1@gmail.com',
+	email: 'dev.nalamkrish@gmail.com',
 	headshot: '/Headshot.jpeg',
-	availability: 'Open to SWE internships & new-grad roles',
+	availability: 'Currently ML Engineer Intern @ RBC Borealis',
 } as const;
 
-// Destinations for the between-section CTAs.
+// Destinations for the between-section CTAs. The résumé PDF lives in this repo (public/).
 export const LINKS = {
-	resume: 'https://drive.google.com/file/d/1spq1R7LHjfKBr8BawODr0yznoVeBqLzR/view?usp=sharing',
+	resume: '/Krish_Nalam_Resume.pdf',
 	archive: '/archive',
 } as const;
 
@@ -35,72 +34,111 @@ export type Social = {
 export const SOCIALS: Social[] = [
 	{ name: 'GitHub', icon: FiGithub, url: 'https://github.com/KrishNalam', handle: '@KrishNalam' },
 	{ name: 'LinkedIn', icon: FiLinkedin, url: 'https://linkedin.com/in/KrishNalam', handle: '/in/KrishNalam' },
-	{ name: 'Devpost', icon: SiDevpost, url: 'https://devpost.com/KrishNalam', handle: '@KrishNalam' },
-	{
-		name: 'Resume',
-		icon: FiFileText,
-		url: 'https://drive.google.com/file/d/1spq1R7LHjfKBr8BawODr0yznoVeBqLzR/view?usp=sharing',
-		handle: 'PDF ↗',
-	},
-	{ name: 'Email', icon: FiMail, url: 'mailto:nalamkrish1@gmail.com', handle: PERSONAL.email },
+	{ name: 'X', icon: FaXTwitter, url: 'https://x.com/StayKool18', handle: '@StayKool18' },
+	{ name: 'Resume', icon: FiFileText, url: LINKS.resume, handle: 'PDF ↗' },
+	{ name: 'Email', icon: FiMail, url: `mailto:${PERSONAL.email}`, handle: PERSONAL.email },
 ];
 
 export type Experience = {
 	role: string;
 	company: string;
+	/** Company homepage. */
+	url?: string;
 	location: string;
 	start: string;
 	end: string;
 	bullets: string[];
 	stack: string[];
+	/** Full-colour mark, shown on a white tile. Falls back to a monogram. */
 	logo?: string;
 };
 
 export const EXPERIENCES: Experience[] = [
 	{
+		role: 'Machine Learning Engineer Intern',
+		company: 'RBC Borealis',
+		url: 'https://rbcborealis.com',
+		location: 'Toronto, ON',
+		start: 'Sep 2026',
+		end: 'Present',
+		bullets: [
+			'Developing Knowledge AI, an internal retrieval-augmented generation platform: parsing heterogeneous document formats, chunking, and embedding them into a vector index for retrieval.',
+			'Extending the generation stage so answers are grounded in retrieved context and traceable to source passages, evaluated on retrieval quality, not fluency.',
+		],
+		stack: ['Python', 'RAG', 'FastAPI', 'Vector Search', 'Docker', 'Kubernetes'],
+		logo: '/rbc-borealis.png',
+	},
+	{
 		role: 'Software Developer',
-		company: 'RBC — Royal Bank of Canada',
+		company: 'aUToronto',
+		url: 'https://autodrive.utoronto.ca',
+		location: 'Toronto, ON',
+		start: 'Sep 2026',
+		end: 'Present',
+		bullets: [
+			'Building software for Zeus, U of T’s student-led self-driving car competing in the SAE AutoDrive Challenge.',
+		],
+		stack: ['Python', 'C++', 'Linux'],
+		logo: '/autoronto.png',
+	},
+	{
+		role: 'Software Engineer Intern',
+		company: 'RBC',
+		url: 'https://www.rbc.com',
+		location: 'Toronto, ON',
+		start: 'May 2026',
+		end: 'Aug 2026',
+		bullets: [
+			'Built an end-to-end CI/CD pipeline on Red Hat Ansible deploying an auth service to Windows Server across 4 environments, cutting deploy time 85% and eliminating 30+ manual steps.',
+			'Automated the TLS certificate lifecycle against an OAuth2 PKI CA, cutting provisioning from 2 days to 5 minutes using in-memory PKCS12 bundles and HashiCorp Vault so no key touches disk.',
+		],
+		stack: ['Ansible', 'Python', 'HashiCorp Vault', 'OAuth2', 'CI/CD'],
+		logo: '/rbc.svg',
+	},
+	{
+		role: 'Software Developer Intern',
+		company: 'RBC',
+		url: 'https://www.rbc.com',
 		location: 'Toronto, ON',
 		start: 'May 2025',
 		end: 'Aug 2025',
 		bullets: [
-			'Built a Java/Maven ETL pipeline modernizing deprecated workflows, automating weekly 30GB+ transit-data processing into flat files for 12+ mainframe JCL jobs, replacing SOAP with REST APIs.',
-			'Implemented automated PostgreSQL stored procedures to archive historical transactional data, reducing production database size by 15% and improving query performance.',
-			'Cut $100K in maintenance costs by migrating RBC Express systems to ES6, ensuring full cross-browser support.',
+			'Engineered a Java/Spring Boot ETL service consolidating HSBC data post-merger, reformatting 30GB+ of weekly data for 12+ mainframe jobs and migrating SOAP endpoints to REST.',
+			'Wrote PostgreSQL stored procedures archiving transaction history (database size down 15%) and modernized legacy RBC Express code to ES6+, contributing $100K in annual savings.',
 		],
-		stack: ['Java', 'Maven', 'PostgreSQL', 'REST', 'ES6'],
-		logo: '/rbc-bw.svg',
+		stack: ['Java', 'Spring Boot', 'PostgreSQL', 'REST', 'ES6'],
+		logo: '/rbc.svg',
 	},
 	{
-		role: 'Full-Stack Developer',
-		company: 'Next Unicorn — Fintech Startup',
+		role: 'Full-Stack Developer (Contract)',
+		company: 'Unicomm — Fintech Startup',
 		location: 'Toronto, ON',
 		start: 'Mar 2025',
 		end: 'Jun 2025',
 		bullets: [
-			'Reduced re-render frequency by 60% via Redux for efficient global state management and caching in React Native.',
-			'Built Dockerized Node.js microservices on AWS Lambda & API Gateway integrating MongoDB & Supabase to support up to 10k req/min; established a Jenkins CI/CD pipeline.',
-			'Cut storage costs 30% with a media pipeline using S3 lifecycle policies, Lambda triggers for resize/compression, and CloudFront edge caching.',
+			'Shipped Dockerized Node.js microservices on AWS EC2 behind API Gateway for a social platform connecting investors and startups, released through a Jenkins CI/CD pipeline.',
+			'Moved the client from React to React Native, cutting re-renders 60% with Redux and client-side caching.',
 		],
 		stack: ['React Native', 'Redux', 'Node.js', 'AWS', 'Docker', 'MongoDB'],
-		logo: '/next-unicorn-bw.svg',
 	},
 	{
-		role: 'Back-End Developer',
-		company: 'RBC — Royal Bank of Canada',
+		role: 'Back-End Developer Intern',
+		company: 'RBC',
+		url: 'https://www.rbc.com',
 		location: 'Toronto, ON',
 		start: 'Jul 2024',
 		end: 'Aug 2024',
 		bullets: [
-			'Benchmarked SARIMA against TensorFlow models in Jupyter using RMSE to optimize login-traffic forecast accuracy.',
-			'Operationalized the winning model to automate resource allocation, cutting workload 30% and saving $360K annually.',
+			'Benchmarked SARIMA against an LSTM (TensorFlow) on RMSE for hourly login-traffic forecasting.',
+			'Operationalized the winning model in production to automate capacity planning, cutting manual workload 30%.',
 		],
 		stack: ['Python', 'TensorFlow', 'SARIMA', 'Jupyter'],
-		logo: '/rbc-bw.svg',
+		logo: '/rbc.svg',
 	},
 	{
-		role: 'Software Engineer',
-		company: 'RBC — Royal Bank of Canada',
+		role: 'Software Engineer Intern',
+		company: 'RBC',
+		url: 'https://www.rbc.com',
 		location: 'Toronto, ON',
 		start: 'Jul 2023',
 		end: 'Aug 2023',
@@ -109,60 +147,69 @@ export const EXPERIENCES: Experience[] = [
 			'Improved API test reliability 25% with a WireMock & Postman mock-API suite, reducing UAT and production issues.',
 		],
 		stack: ['Java', 'Docker', 'ReadyAPI', 'WireMock', 'Postman'],
-		logo: '/rbc-bw.svg',
+		logo: '/rbc.svg',
 	},
 ];
 
 export type Project = {
 	title: string;
-	tagline: string;
 	description: string;
 	bullets: string[];
 	stack: string[];
-	url: string;
-	image: string;
+	/** Omit for projects without a public link yet. */
+	url?: string;
 	award?: string;
+	comingSoon?: boolean;
 };
 
 export const PROJECTS: Project[] = [
 	{
-		title: 'UofT Webring',
-		tagline: 'Connected network of UofT student portfolios',
-		description: 'A platform that showcases the portfolios of UofT students in one connected network.',
+		title: 'Lens',
+		description: 'An agentic research assistant that plans multi-step research and cites verified sources.',
 		bullets: [
-			'Serverless media pipeline using S3 presigned URLs for secure uploads, CloudFront edge caching, and Supabase metadata; automated image resizing with Lambda triggers.',
-			'Scalable serverless mass-mailing workflow with AWS SES & Lambda — 10K+ emails per user with auto-scaling and 99% delivery success.',
+			'LangGraph agent that plans multi-step research, retrieves from uploaded documents and web search via Chroma, and drafts a cited report.',
+			'Fine-tuned DeBERTa-v3 on FEVER to flag unsupported claims, serving per-claim confidence via FastAPI and a streaming Next.js UI, with retrieval scored by RAGAS.',
 		],
-		stack: ['Next.js', 'Supabase', 'AWS', 'CloudFront'],
+		stack: ['LangGraph', 'FastAPI', 'Next.js', 'Chroma', 'DeBERTa-v3', 'RAGAS'],
+	},
+	{
+		title: 'UofT Webring',
+		description: 'A live community platform showcasing UofT students’ portfolios in one connected network.',
+		bullets: [
+			'Locked member data behind Postgres row-level security with a column allowlist keeping emails out of public payloads; verified site ownership via an HMAC-SHA256 DNS TXT check.',
+			'Moved avatar processing into the browser (crop, 512px, AVIF) and uploaded direct to S3 via presigned URLs with immutable CloudFront caching, cutting image payload 80%.',
+		],
+		stack: ['Next.js', 'TypeScript', 'Supabase', 'AWS S3', 'CloudFront'],
 		url: 'https://www.uoftwebring.com',
-		image: '/UofTWebring.png',
 	},
 	{
 		title: 'FITRIS',
-		tagline: 'Play Tetris with real-world exercises',
 		description: 'An interactive fitness game that maps real exercises to Tetris controls via computer vision.',
 		bullets: [
-			'React front end with a Flask + NumPy back end for movement detection and precise body-joint tracking.',
-			'MediaPipe & OpenCV to classify 5+ exercises with 90% detection accuracy.',
+			'Mapped 5 exercises to Tetris controls in real time, classifying a 33-point MediaPipe skeleton with a state machine over 12+ joint angles that counts only full reps.',
+			'Architected a 3-process pipeline (OpenCV, Flask, React) replacing file polling with Server-Sent Events and a monotonic sequence counter for exactly-once delivery.',
 		],
-		stack: ['React', 'OpenCV', 'PyTorch', 'MediaPipe', 'Flask'],
-		url: 'https://github.com/yuvibirdi/fitris',
-		image: '/Fitris.png',
-		award: 'Winner @ JamHacks',
+		stack: ['Python', 'OpenCV', 'MediaPipe', 'Flask', 'React'],
+		url: 'https://github.com/KrishNalam/Project-Fitris',
+		award: 'Winner @ JamHacks 8',
 	},
 	{
 		title: 'DevDuels',
-		tagline: 'Competitive code review with real-time AI feedback',
 		description: 'A web game that encourages effective code reviews through competition and real-time AI feedback.',
 		bullets: [
-			'Responsive Next.js + Tailwind front end using lazy loading and code splitting for efficient rendering.',
 			'MongoDB + GitHub API back end for auth, storage, and user integration.',
 			'Context-aware feedback via embeddings & RAG with LangChain, semantically analyzing code.',
 		],
 		stack: ['Next.js', 'MongoDB', 'LangChain', 'Tailwind'],
 		url: 'https://github.com/m-shao/hack-the-valley',
-		image: '/DevDuels.png',
 		award: 'Winner @ HackTheValley',
+	},
+	{
+		title: 'Project Tantalus',
+		description: 'Coming soon.',
+		bullets: [],
+		stack: [],
+		comingSoon: true,
 	},
 ];
 
@@ -178,68 +225,37 @@ export type LogEntry = {
    A running log of what I'm learning. To add an entry, copy a
    block and drop it at the TOP of the array (newest first).
    ─────────────────────────────────────────────────────────── */
-export const LOGBOOK: LogEntry[] = [
-	{
-		date: 'Jun 20, 2026',
-		title: 'Taming React re-renders',
-		body: 'Traded prop-drilling for memoized Redux selectors and React.memo on hot list rows, which cut wasted renders sharply. Lesson: profile first — useMemo everywhere is a smell, not a fix.',
-		tags: ['React', 'Redux', 'Performance'],
-	},
-	{
-		date: 'Jun 8, 2026',
-		title: 'Killing Lambda cold starts',
-		body: 'Provisioned concurrency plus a leaner bundle (lazy-loading the AWS SDK v3 clients) dropped p99 cold starts from ~1.2s to under 300ms.',
-		tags: ['AWS', 'Lambda', 'Serverless'],
-	},
-	{
-		date: 'May 27, 2026',
-		title: 'Window functions > N+1 queries',
-		body: 'Replaced a pile of running-total queries with one pass using SUM() OVER (PARTITION BY …). One query, far less app-side glue, and the planner does the heavy lifting.',
-		tags: ['PostgreSQL', 'SQL'],
-	},
-];
+export const LOGBOOK: LogEntry[] = [];
 
 export const SKILLS: { group: string; items: string[] }[] = [
-	{ group: 'Languages', items: ['Java', 'Python', 'TypeScript', 'JavaScript', 'SQL', 'C'] },
-	{ group: 'Frontend', items: ['React', 'Next.js', 'React Native', 'Redux', 'Tailwind CSS'] },
-	{ group: 'Backend', items: ['Node.js', 'Flask', 'REST', 'PostgreSQL', 'MongoDB', 'Supabase'] },
-	{ group: 'Cloud & DevOps', items: ['AWS', 'Docker', 'Jenkins', 'Lambda', 'CloudFront', 'CI/CD'] },
-	{ group: 'ML & Data', items: ['TensorFlow', 'PyTorch', 'OpenCV', 'MediaPipe', 'LangChain'] },
+	{ group: 'Languages', items: ['Python', 'TypeScript', 'Java', 'C/C++', 'Rust', 'SQL', 'Bash'] },
+	{ group: 'ML & AI', items: ['PyTorch', 'TensorFlow', 'Hugging Face', 'LangGraph', 'RAG', 'OpenCV'] },
+	{ group: 'Web', items: ['React', 'Next.js', 'React Native', 'Node.js', 'FastAPI', 'Spring Boot'] },
+	{ group: 'Infra', items: ['Linux', 'Docker', 'Kubernetes', 'AWS', 'Ansible', 'GitHub Actions', 'PostgreSQL'] },
 ];
 
 export const EDUCATION = {
 	school: 'University of Toronto',
-	degree: 'B.Sc. Computer Science',
-	detail: 'Specialist · Co-op',
-	period: '2022 — 2026',
+	degree: 'Honours B.Sc. Computer Science (Co-op)',
+	period: 'expected April 2029',
 } as const;
 
 export const ABOUT = {
-	heading: 'About',
-	greeting: 'Hello again :)',
 	body: [
 		'I’m a Computer Science student at the University of Toronto who likes turning messy, large-scale problems into systems that quietly just work.',
-		'Across four internships at RBC and a fintech startup, I’ve shipped ETL pipelines, serverless infrastructure, and ML forecasting models. On weekends I’m a tech geek debugging life’s challenges with a dash of humour and caffeine — usually at a hackathon.',
+		'Across six internships at RBC, RBC Borealis, and a fintech startup, I’ve shipped RAG pipelines, CI/CD and certificate automation, ETL services, and ML forecasting models. I’m also on aUToronto, U of T’s self-driving car team. On weekends I’m usually at a hackathon, debugging life’s challenges with a dash of humour and caffeine.',
 	],
 } as const;
 
 export type WipProject = {
 	name: string;
 	description: string;
-	progress: number;
 	url: string;
 };
 
 export const WORKS_IN_PROGRESS: WipProject[] = [
-	{ name: 'PredicTurf', description: 'ML sports prediction engine', progress: 80, url: 'https://github.com/KrishNalam' },
-	{ name: 'Project Delphi', description: 'AI-powered analytics platform', progress: 65, url: 'https://github.com/KrishNalam' },
-];
-
-export const HOBBIES: { emoji: string; name: string }[] = [
-	{ emoji: '🍿', name: 'Cinema nerd' },
-	{ emoji: '🖨️', name: '3D printing' },
-	{ emoji: '🚜', name: 'Gardening' },
-	{ emoji: '🎮', name: 'Gaming' },
+	{ name: 'PredicTurf', description: 'ML sports prediction engine', url: 'https://github.com/KrishNalam' },
+	{ name: 'Project Delphi', description: 'AI-powered analytics platform', url: 'https://github.com/KrishNalam/Project-Delphi' },
 ];
 
 // UofT Webring — this site's slot in the ring (https://uoftwebring.com)
@@ -251,16 +267,4 @@ export const WEBRING = {
 	next: 'https://uoftwebring.com/redirect?nav=next&id=3',
 } as const;
 
-export const STATS: { value: string; label: string }[] = [
-	{ value: '4', label: 'Internships' },
-	{ value: '2', label: 'Hackathon wins' },
-	{ value: '10k', label: 'Req/min served' },
-	{ value: '$560K', label: 'Costs saved' },
-];
 
-export const NAV_SECTIONS = [
-	{ id: 'about', label: 'About', index: '01' },
-	{ id: 'experience', label: 'Experience', index: '02' },
-	{ id: 'projects', label: 'Projects', index: '03' },
-	{ id: 'contact', label: 'Contact', index: '04' },
-] as const;

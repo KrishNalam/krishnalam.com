@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 	description: 'A fuller list of things Krish Nalam has designed, built, and broken.',
 };
 
-type Row = { title: string; blurb: string; stack: string[]; url: string; tag: string };
+type Row = { title: string; blurb: string; stack: string[]; url?: string; tag: string };
 
 const ROWS: Row[] = [
 	...PROJECTS.map((p) => ({
@@ -16,7 +16,7 @@ const ROWS: Row[] = [
 		blurb: p.description,
 		stack: p.stack,
 		url: p.url,
-		tag: p.award ?? 'Project',
+		tag: p.comingSoon ? 'Coming soon' : (p.award ?? 'Project'),
 	})),
 	...WORKS_IN_PROGRESS.map((w) => ({
 		title: w.name,
@@ -57,27 +57,20 @@ export default function ArchivePage() {
 				<h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-6xl">
 					Project Archive
 				</h1>
-				<p className="mt-3 text-ink-2">
-					A fuller list of things I&rsquo;ve designed, built, and broken.
-				</p>
+				<p className="mt-3 text-ink-2">A fuller list of things I&rsquo;ve designed, built, and broken.</p>
 			</header>
 
 			<table className="mt-12 w-full border-collapse text-left">
 				<thead className="sr-only lg:not-sr-only">
 					<tr className="border-b border-line">
 						<th className="eyebrow py-4 pr-8 font-normal text-ink-3">Project</th>
-						<th className="eyebrow hidden py-4 pr-8 font-normal text-ink-3 lg:table-cell">
-							Built with
-						</th>
+						<th className="eyebrow hidden py-4 pr-8 font-normal text-ink-3 lg:table-cell">Built with</th>
 						<th className="eyebrow py-4 font-normal text-ink-3">Link</th>
 					</tr>
 				</thead>
 				<tbody>
 					{ROWS.map((r) => (
-						<tr
-							key={r.title}
-							className="border-b border-line align-top transition-colors hover:bg-surface"
-						>
+						<tr key={r.title} className="border-b border-line align-top transition-colors hover:bg-surface">
 							<td className="py-5 pr-8">
 								<div className="flex flex-wrap items-center gap-x-3 gap-y-1">
 									<span className="font-medium text-ink">{r.title}</span>
@@ -96,15 +89,17 @@ export default function ArchivePage() {
 								<StackPills stack={r.stack} />
 							</td>
 							<td className="py-5">
-								<a
-									href={r.url}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={`Visit ${r.title}`}
-									className="inline-block text-ink-3 transition-colors hover:text-ink"
-								>
-									<ArrowUpRight className="size-5" />
-								</a>
+								{r.url && (
+									<a
+										href={r.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label={`Visit ${r.title}`}
+										className="inline-block text-ink-3 transition-colors hover:text-ink"
+									>
+										<ArrowUpRight className="size-5" />
+									</a>
+								)}
 							</td>
 						</tr>
 					))}

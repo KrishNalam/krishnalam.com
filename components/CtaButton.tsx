@@ -4,9 +4,9 @@ import { ArrowUpRight } from 'lucide-react';
 const CLS =
 	'group inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-ink-2';
 
-/** Underlined text link used between sections. Internal hrefs route via next/link. */
+/** Underlined text link used between sections. Internal pages route via next/link; external links and PDFs open in a new tab. */
 export function CtaButton({ href, children }: { href: string; children: React.ReactNode }) {
-	const external = /^https?:/.test(href);
+	const external = /^https?:|\.pdf$/.test(href);
 	const inner = (
 		<>
 			<span className="underline decoration-1 underline-offset-4">{children}</span>
