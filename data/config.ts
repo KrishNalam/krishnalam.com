@@ -61,19 +61,25 @@ export const EXPERIENCES: Experience[] = [
 		location: 'Toronto, ON',
 		start: 'Sep 2026',
 		end: 'Present',
-		bullets: [],
-		stack: ['Python', 'RAG', 'FastAPI', 'Vector Search', 'Docker', 'Kubernetes'],
+		bullets: [
+			'Cut OOM-failed ingestion runs from 30% to 0 across 75K+ documents on Knowledge AI, an internal RAG platform serving 10K+ advisors, via worker recycling and cgroup memory caps.',
+			'Reduced unsupported citations from 25% to 5% across 300+ EN/FR eval questions with an NLI verifier that drops claim–citation links the passage doesn’t back, scored by an independent LLM-as-NLI audit.',
+		],
+		stack: ['Python', 'RAG', 'FastAPI', 'PGVector', 'OpenShift', 'W&B'],
 		logo: '/rbc-borealis.png',
 	},
 	{
-		role: 'Software Developer',
+		role: 'ML Infrastructure Developer, Training Infrastructure',
 		company: 'aUToronto',
 		url: 'https://autodrive.utoronto.ca',
 		location: 'Toronto, ON',
 		start: 'Sep 2026',
 		end: 'Present',
-		bullets: [],
-		stack: ['Python', 'C++', 'Linux'],
+		bullets: [
+			'Cut PointPillars 3D LiDAR detection latency on a Tenstorrent Wormhole accelerator 2.8× (280 → 102 ms/frame, 1.9× faster than CPU) by moving the neck and head on-chip and padding pillar counts to kill 2.5 s kernel recompiles, holding 0.9996 PCC against the PyTorch reference.',
+			'Recovered detections on 108/140 frames of the team’s own 108K-point Ouster drive logs by tracing empty output to saturated LiDAR intensity (78% of points clipped) and rescaling it.',
+		],
+		stack: ['Python', 'PyTorch', 'Tenstorrent TT-NN', 'LiDAR', 'ROS 2'],
 		logo: '/autoronto.png',
 	},
 	{
@@ -179,21 +185,22 @@ export const PROJECTS: Project[] = [
 		title: 'UofT Webring',
 		description: 'A live community platform showcasing UofT students’ portfolios in one connected network.',
 		bullets: [
-			'Locked member data behind Postgres row-level security with a column allowlist keeping emails out of public payloads; verified site ownership via an HMAC-SHA256 DNS TXT check.',
-			'Moved avatar processing into the browser (crop, 512px, AVIF) and uploaded direct to S3 via presigned URLs with immutable CloudFront caching, cutting image payload 80%.',
+			'Built uptime monitoring for 54 member sites on a scheduled GitHub Actions job, logging HTTP status and latency to PostgreSQL (90-day history); sites down twice in a row drop out of the ring and rejoin on recovery.',
+			'Shipped a 4.0KB, dependency-free embed widget (Shadow DOM, no innerHTML) that cuts joining to a single script tag, with server-side detection so installs verify themselves.',
+			'Locked member data behind PostgreSQL row-level security with a column allowlist keeping emails out of public payloads; verified site ownership via an HMAC-SHA256 DNS TXT check.',
 		],
 		stack: ['Next.js', 'TypeScript', 'Supabase', 'AWS S3', 'CloudFront'],
 		url: 'https://www.uoftwebring.com',
 	},
 	{
 		title: 'FITRIS',
-		description: 'An interactive fitness game that maps real exercises to Tetris controls via computer vision.',
+		description: 'Tetris you play with your body: webcam pose tracking turns squats, jumping jacks and arm raises into game controls.',
 		bullets: [
-			'Mapped 5 exercises to Tetris controls in real time, classifying a 33-point MediaPipe skeleton with a state machine over 12+ joint angles that counts only full reps.',
-			'Architected a 3-process pipeline (OpenCV, Flask, React) replacing file polling with Server-Sent Events and a monotonic sequence counter for exactly-once delivery.',
+			'Rebuilt the hackathon version to run fully in the browser: MediaPipe pose inference on WebAssembly/WebGL, with no server, so video never leaves the device.',
+			'Per-exercise state machines over 12 joint angles (computed in pixel space) count only full reps; tested with Vitest and deployed by a GitHub Actions pipeline.',
 		],
-		stack: ['Python', 'OpenCV', 'MediaPipe', 'Flask', 'React'],
-		url: 'https://github.com/KrishNalam/Project-Fitris',
+		stack: ['React', 'MediaPipe', 'WebAssembly', 'WebGL', 'Vite'],
+		url: 'https://github.com/KrishNalam/Project-FITRIS',
 		award: 'Winner @ JamHacks 8',
 	},
 	{
@@ -224,15 +231,15 @@ export type LogEntry = {
 export const LOGBOOK: LogEntry[] = [];
 
 export const SKILLS: { group: string; items: string[] }[] = [
-	{ group: 'Languages', items: ['Python', 'TypeScript', 'Java', 'C/C++', 'Rust', 'SQL', 'Bash'] },
-	{ group: 'ML & AI', items: ['PyTorch', 'TensorFlow', 'Hugging Face', 'LangGraph', 'RAG', 'OpenCV'] },
+	{ group: 'Languages', items: ['Python', 'TypeScript', 'Java', 'C/C++', 'SQL', 'Bash'] },
+	{ group: 'ML & AI', items: ['PyTorch', 'TensorFlow', 'Hugging Face', 'LangGraph', 'RAG', 'OpenCV', 'Tenstorrent TT-NN'] },
 	{ group: 'Web', items: ['React', 'Next.js', 'React Native', 'Node.js', 'FastAPI', 'Spring Boot'] },
-	{ group: 'Infra', items: ['Linux', 'Docker', 'Kubernetes', 'AWS', 'Ansible', 'GitHub Actions', 'PostgreSQL'] },
+	{ group: 'Infra', items: ['Linux', 'Docker', 'ROS 2', 'Kubernetes', 'AWS', 'Ansible', 'GitHub Actions', 'PostgreSQL'] },
 ];
 
 export const EDUCATION = {
 	school: 'University of Toronto',
-	degree: 'Honours B.Sc. Computer Science (Co-op)',
+	degree: 'Honours Bachelor of Computer Science (Co-op)',
 	period: 'expected April 2029',
 } as const;
 
