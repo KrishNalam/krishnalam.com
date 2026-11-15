@@ -173,19 +173,21 @@ export const PROJECTS: Project[] = [
 		comingSoon: true,
 	},
 	{
-		title: 'Lens',
-		description: 'An agentic research assistant that plans multi-step research and cites verified sources.',
+		title: 'Legacy Siege',
+		description: 'A self-healing swarm of AI agents that keeps a simulated bank’s legacy systems alive while an AI Red fleet attacks them. MongoDB Hackathon winner ($10K in prizes).',
 		bullets: [
-			'LangGraph agent that plans multi-step research, retrieves from uploaded documents and web search via Chroma, and drafts a cited report.',
-			'Fine-tuned DeBERTa-v3 on FEVER to flag unsupported claims, serving per-claim confidence via FastAPI and a streaming Next.js UI, with retrieval scored by RAGAS.',
+			'Built a self-healing swarm of 12 LangGraph agents that detect, diagnose and fix cascading failures across simulated legacy bank systems, checkpointed in MongoDB so killed agents resume mid-task without redoing steps.',
+			'Gave agents memory: fixes are saved as playbooks and recalled with Atlas Vector Search, cutting repeat incidents from 3 diagnosis hops to 1 and recovery time 43% (35.7→20.2 s).',
+			'Built an adversarial fleet of 5 LLM attackers (agent SIGKILLs, lying ops, memory poisoning) run by a planner; the swarm recovered on 26/26 automated checks, winning among 98 projects.',
 		],
-		stack: ['LangGraph', 'FastAPI', 'Next.js', 'Chroma', 'DeBERTa-v3', 'RAGAS'],
+		stack: ['LangGraph', 'MongoDB Atlas', 'Vector Search', 'FastAPI'],
+		url: 'https://github.com/KrishNalam/legacy-siege',
 	},
 	{
 		title: 'UofT Webring',
 		description: 'A live community platform showcasing UofT students’ portfolios in one connected network.',
 		bullets: [
-			'Built uptime monitoring for 54 member sites on a scheduled GitHub Actions job, logging HTTP status and latency to PostgreSQL (90-day history); sites down twice in a row drop out of the ring and rejoin on recovery.',
+			'Built uptime monitoring for 34 member sites on a scheduled GitHub Actions job, logging HTTP status and latency to PostgreSQL (90-day history); caught 6 dead sites on its first run.',
 			'Shipped a 4.0KB, dependency-free embed widget (Shadow DOM, no innerHTML) that cuts joining to a single script tag, with server-side detection so installs verify themselves.',
 			'Locked member data behind PostgreSQL row-level security with a column allowlist keeping emails out of public payloads; verified site ownership via an HMAC-SHA256 DNS TXT check.',
 		],
@@ -198,6 +200,7 @@ export const PROJECTS: Project[] = [
 		bullets: [
 			'Rebuilt the hackathon version to run fully in the browser: MediaPipe pose inference on WebAssembly/WebGL, with no server, so video never leaves the device.',
 			'Per-exercise state machines over 12 joint angles (computed in pixel space) count only full reps; tested with Vitest and deployed by a GitHub Actions pipeline.',
+			'Runs inference at 18 ms median (22 ms p95) on the WebGL GPU delegate with 24 ms capture-to-input latency, at the webcam’s full 20 fps.',
 		],
 		stack: ['React', 'MediaPipe', 'WebAssembly', 'WebGL', 'Vite'],
 		url: 'https://github.com/KrishNalam/Project-FITRIS',
@@ -232,15 +235,15 @@ export const LOGBOOK: LogEntry[] = [];
 
 export const SKILLS: { group: string; items: string[] }[] = [
 	{ group: 'Languages', items: ['Python', 'TypeScript', 'Java', 'C/C++', 'SQL', 'Bash'] },
-	{ group: 'ML & AI', items: ['PyTorch', 'TensorFlow', 'Hugging Face', 'LangGraph', 'RAG', 'OpenCV', 'Tenstorrent TT-NN'] },
+	{ group: 'ML & AI', items: ['PyTorch', 'Hugging Face', 'LangGraph', 'RAG', 'Vector Search', 'MediaPipe', 'OpenCV', 'Tenstorrent TT-NN'] },
 	{ group: 'Web', items: ['React', 'Next.js', 'React Native', 'Node.js', 'FastAPI', 'Spring Boot'] },
-	{ group: 'Infra', items: ['Linux', 'Docker', 'ROS 2', 'Kubernetes', 'AWS', 'Ansible', 'GitHub Actions', 'PostgreSQL'] },
+	{ group: 'Infra', items: ['Linux', 'Docker', 'AWS', 'Ansible', 'GitHub Actions', 'PostgreSQL', 'MongoDB'] },
 ];
 
 export const EDUCATION = {
 	school: 'University of Toronto',
 	degree: 'Honours Bachelor of Computer Science (Co-op)',
-	period: 'expected April 2029',
+	period: 'expected April 2028',
 } as const;
 
 export const ABOUT = {
