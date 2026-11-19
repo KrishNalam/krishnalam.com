@@ -336,7 +336,10 @@ export const LOGBOOK: LogEntry[] = [
 			{ label: 'Code on GitHub', url: 'https://github.com/KrishNalam/legacy-siege' },
 			{ label: 'Hackathon gallery', url: 'https://cerebralvalley.ai/e/mongodb-toronto-hackathon/hackathon/gallery/52' },
 		],
-		posted: { x: 'https://x.com/StayKool18/status/2123560299403841577' },
+		posted: {
+			x: 'https://x.com/StayKool18/status/2123560299403841577',
+			linkedin: 'https://www.linkedin.com/feed/update/urn:li:activity:7529329193747107840/',
+		},
 	},
 ];
 
