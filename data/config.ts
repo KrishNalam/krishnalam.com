@@ -22,6 +22,7 @@ export const LINKS = {
 	resume: '/Krish_Nalam_Resume.pdf',
 	archive: '/archive',
 	experience: '/experience',
+	logbook: '/logbook',
 } as const;
 
 export type Social = {
@@ -174,11 +175,11 @@ export const PROJECTS: Project[] = [
 	},
 	{
 		title: 'Legacy Siege',
-		description: 'A self-healing swarm of AI agents that keeps a simulated bank’s legacy systems alive while an AI Red fleet attacks them. MongoDB Hackathon winner ($10K in prizes).',
+		description: 'A self-healing swarm of AI agents that keeps a simulated bank’s legacy systems alive while an AI Red fleet attacks them. MongoDB Hackathon 1st place ($10K in prizes).',
 		bullets: [
-			'Built a self-healing swarm of 12 LangGraph agents that detect, diagnose and fix cascading failures across simulated legacy bank systems, checkpointed in MongoDB so killed agents resume mid-task without redoing steps.',
+			'Built a self-healing LangGraph agent swarm that scales its workers to the incident and detects, diagnose and fix cascading failures across simulated legacy bank systems, checkpointed in MongoDB so killed agents resume mid-task without redoing steps.',
 			'Gave agents memory: fixes are saved as playbooks and recalled with Atlas Vector Search, cutting repeat incidents from 3 diagnosis hops to 1 and recovery time 43% (35.7→20.2 s).',
-			'Built an adversarial fleet of 5 LLM attackers (agent SIGKILLs, lying ops, memory poisoning) run by a planner; the swarm recovered on 26/26 automated checks, winning among 98 projects.',
+			'Built an adversarial fleet of LLM attackers (agent SIGKILLs, lying ops, memory poisoning) run by a planner; the swarm recovered from every attack in our test suite, winning 1st place.',
 		],
 		stack: ['LangGraph', 'MongoDB Atlas', 'Vector Search', 'FastAPI'],
 		url: 'https://github.com/KrishNalam/legacy-siege',
@@ -219,19 +220,99 @@ export const PROJECTS: Project[] = [
 	},
 ];
 
+export type LogKind = 'project' | 'hackathon' | 'take' | 'til';
+
+export const LOG_KIND_LABEL: Record<LogKind, string> = {
+	project: 'Build',
+	hackathon: 'Hackathon',
+	take: 'Take',
+	til: 'TIL',
+};
+
 export type LogEntry = {
-	/** Display date, e.g. 'Jun 20, 2026'. Keep entries newest-first. */
+	/** URL slug: /logbook/<slug>. Never change once published (posts link here). */
+	slug: string;
+	/** ISO date, e.g. '2026-11-15'. Entries are sorted newest-first automatically. */
 	date: string;
+	kind: LogKind;
 	title: string;
-	body: string;
+	/** One or two sentences, shown in lists and as the share description. */
+	summary: string;
+	/** Full entry, one string per paragraph. A string starting with '## ' is a section heading. */
+	body: string[];
 	tags?: string[];
+	/** Path under /public, e.g. '/logbook/legacy-siege/stage.jpg'. */
+	image?: { src: string; alt: string };
+	/** Extra images shown inside the body, each placed after paragraph `after` (0-based). */
+	figures?: { src: string; alt: string; caption?: string; after: number }[];
+	links?: { label: string; url: string }[];
+	/** Where this entry was syndicated (POSSE). Fill in after posting. */
+	posted?: { x?: string; linkedin?: string };
+	/** Hidden on the production site until you remove it. Shown in `npm run dev`. */
+	draft?: boolean;
 };
 
 /* ─── LOGBOOK ───────────────────────────────────────────────
-   A running log of what I'm learning. To add an entry, copy a
-   block and drop it at the TOP of the array (newest first).
+   Builds, hackathons, takes and TILs. Publish here first, then
+   post to X/LinkedIn linking back, and paste the post URLs into
+   `posted`. Order doesn't matter: sorted by date on render.
    ─────────────────────────────────────────────────────────── */
-export const LOGBOOK: LogEntry[] = [];
+export const LOGBOOK: LogEntry[] = [
+	{
+		slug: 'home-server-setup',
+		date: '2026-11-20',
+		kind: 'project',
+		draft: true,
+		title: 'My home server setup',
+		summary: 'TODO: the towers, the home server, and why the demo was still running when we needed it.',
+		body: ['TODO: write this one.'],
+	},
+	{
+		slug: 'legacy-siege-mongodb-hackathon',
+		date: '2026-11-14',
+		kind: 'hackathon',
+		title: 'Legacy Siege won the MongoDB Hackathon',
+		image: {
+			src: '/logbook/legacy-siege/first-place.jpg',
+			alt: 'Krish Nalam and Anwar on stage under the First Place: Legacy Siege slide at Agents in Context, a MongoDB hackathon in Toronto',
+		},
+		summary:
+			'A swarm of AI agents kept a simulated bank\'s legacy systems alive while a fleet of AI attackers tried to kill it. It recovered from every attack we threw at it and won 1st place at Agents in Context, MongoDB\'s hackathon in Toronto.',
+		body: [
+			'## The Story',
+			'Here\'s the thing about Agents in Context: Anwar and I forgot we\'d signed up. Between our internships it had slipped right out of our heads. When we finally looked at it, the night before, we realized it was a huge opportunity, so we fully locked in, ideating and planning until nearly 1 a.m.',
+			'The next morning we dragged ourselves awake, grabbed our monitors, forgot our ethernet cables, and drove to MongoDB\'s one-day hackathon in Toronto. We didn\'t build on laptops: we hauled in our own desktop towers and plugged straight into them.',
+			'We coded for so long that we looked up and it was 4:30 p.m. Submissions closed at 5. And at that exact moment we got kicked out of our room, because it was about to become a judging room. Small problem: the submission needed a 1-minute demo video, and we hadn\'t thought about it...',
+			'We tore down the whole setup, booked it downstairs, found an empty hallway, and recorded it off the tops of our heads. We got three takes before the deadline made the decision for us. Then judging started in 15 minutes, so we ran back upstairs to prep a 3-minute presentation we hadn\'t written.',
+			'Round 1 did not go well. We ran over time, left room for only 1 question, and walked off certain we\'d bombed. It felt so bad that we sat down and held a 30-minute post-mortem on everything we should have done differently, so that next time would go better. Then we honestly gave up. We only stayed to see who won and to support our friends (but also for the free food).',
+			'When they called the finalists, we missed our own name. We were half asleep and had forgotten what we\'d named ourselves. When it finally clicked, we literally screamed ourselves awake, Anwar chugged a Red Bull, and I instantly opened my laptop. Legacy Siege was still running on our home server (this is why I love my home server), so the demo was live within a minute. And on stage we did every single thing we\'d spent those 30 minutes wishing we had done.',
+			'We won 1st place.',
+			'## The Project',
+			'Banks still run on systems older than most of the people maintaining them. When one fails at 3 a.m., the fix lives in someone\'s head. We wanted to see if a swarm of AI agents could hold that knowledge instead, and keep the systems alive while something actively tried to break them.',
+			'Legacy Siege is two sides. The swarm is a set of LangGraph agents that spawns as many workers as an incident needs: Scouts trace a failure back through the mainframe, Unix batch and web portal to its root cause, Workers fix it, a Guard only marks a step done after reading the system back, and Nurses take over the job of any agent that gets killed. Against it, a Red fleet of LLM attackers run by a planner kills agents mid-task, feeds them lying ops reports, and tries to poison their memory.',
+			'MongoDB is the spine. Every agent step is checkpointed, so when an agent dies halfway through a fix, another picks up the job from the last step instead of starting over. Every successful fix is saved as a playbook and recalled with Atlas Vector Search, so the second time it sees the same attack, it finds the cause in 1 step instead of 3 and recovers 43% faster. When a fault keeps coming back, a Gardener rewrites the legacy code itself, after replaying the attack to prove the fix works.',
+			'It recovered from every attack we threw at it. The part I\'d keep: memory is an attack surface. Once agents learn from past fixes, poisoning that memory is the cheapest attack there is, so recalled playbooks have to be verified, not trusted.',
+			'## The Aftermath',
+			'1st place came with $7K and $3K in LangSmith credits. We went home exhausted and very happy.',
+			'Thanks to MongoDB and Bond AI for running Agents in Context, and to the judges for their questions. Congrats to Suture on 2nd place: their crash-proof incident agent was tackling the same problem from a different angle.',
+			'Legacy Siege was supposed to end when the hackathon did. It hasn\'t. We learned there\'s real fear around this problem, and real demand for a fix: the 3 a.m. problem it goes after is a lot bigger than one demo. So Anwar and I aren\'t done with it just yet...',
+		],
+		figures: [
+			{
+				src: '/logbook/legacy-siege/dashboard.jpg',
+				alt: 'Legacy Siege war room: Chaos Monkey attackers on the left, the legacy bank systems in the middle, the agent swarm on the right, MongoDB collections along the bottom',
+				caption: 'The war room mid-attack. An Assassin has killed the mainframe worker, and Nurse 7 has taken over its job.',
+				after: 11,
+			},
+		],
+		tags: ['LangGraph', 'MongoDB Atlas', 'Vector Search', 'Multi-agent'],
+		links: [
+			{ label: 'Demo video', url: 'https://youtu.be/nyAwr1PlQpE' },
+			{ label: 'Code on GitHub', url: 'https://github.com/KrishNalam/legacy-siege' },
+			{ label: 'Hackathon gallery', url: 'https://cerebralvalley.ai/e/mongodb-toronto-hackathon/hackathon/gallery/52' },
+		],
+	},
+];
 
 export const SKILLS: { group: string; items: string[] }[] = [
 	{ group: 'Languages', items: ['Python', 'TypeScript', 'Java', 'C/C++', 'SQL', 'Bash'] },

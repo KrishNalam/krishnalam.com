@@ -34,6 +34,7 @@ export default function Home() {
 						<Projects />
 						<CtaButton links={[{ href: LINKS.archive, label: 'View Full Project Archive' }]} />
 						<Logbook />
+						<CtaButton links={[{ href: LINKS.logbook, label: 'View Full Logbook' }]} />
 						<Footer />
 					</main>
 				</div>
