@@ -29,7 +29,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function renderInline(text: string) {
 	return text.split(/(\[[^\]]+\]\([^)]+\))/g).map((part, i) => {
 		const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-		if (!m) return part;
+		if (!m)
+			return part.split(/(\*\*[^*]+\*\*)/g).map((b, j) =>
+				/^\*\*[^*]+\*\*$/.test(b) ? (
+					<strong key={`${i}-${j}`} className="font-semibold">
+						{b.slice(2, -2)}
+					</strong>
+				) : (
+					b
+				),
+			);
 		const [, label, href] = m;
 		const cls = 'underline decoration-1 underline-offset-4 hover:text-ink-2';
 		return /^https?:/.test(href) ? (
@@ -92,6 +101,25 @@ export default async function LogEntryPage({ params }: Props) {
 								<h2 className="!mt-14 max-w-3xl font-display text-2xl font-bold tracking-tight text-ink first:!mt-0">
 									{para.slice(3)}
 								</h2>
+							) : para.startsWith('|') ? (
+								<div className="max-w-3xl overflow-x-auto rounded-lg border border-line">
+									<table className="w-full text-left text-[0.95rem]">
+										{para.split('\n').map((row, r) => {
+											const cells = row.replace(/^\||\|$/g, '').split('|').map((c) => c.trim())
+											const Cell = r === 0 ? 'th' : 'td'
+											const content = cells.map((c, k) => (
+												<Cell key={k} className={`w-1/2 px-4 py-3 align-top ${r === 0 ? 'bg-accent-soft font-display font-bold' : 'border-t border-line'} ${k > 0 ? 'border-l border-line' : ''}`}>
+													{renderInline(c)}
+												</Cell>
+											))
+											return r === 0 ? (
+												<thead key={r}><tr>{content}</tr></thead>
+											) : (
+												<tbody key={r}><tr>{content}</tr></tbody>
+											)
+										})}
+									</table>
+								</div>
 							) : (
 								<p className="max-w-3xl text-ink">{renderInline(para)}</p>
 							)}

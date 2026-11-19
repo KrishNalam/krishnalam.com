@@ -260,9 +260,8 @@ export type LogEntry = {
 export const LOGBOOK: LogEntry[] = [
 	{
 		slug: 'home-server-setup',
-		date: '2026-11-20',
+		date: '2026-11-19',
 		kind: 'project',
-		draft: true,
 		title: 'My home server is a 2017 laptop',
 		summary: 'A 2017 laptop with its lid shut runs my demos, my dev environment and my coding agents. How I set it up with Ubuntu, Tailscale and T3 Code, and why an old laptop is all you need.',
 		body: [
@@ -285,10 +284,9 @@ export const LOGBOOK: LogEntry[] = [
 			'## The towers never left home',
 			'At Agents in Context, MongoDB\'s hackathon in Toronto, Anwar and I brought monitors to the venue (we forgot our ethernet cables) but not our desktop towers. They stayed at home. Over Tailscale, the venue Wi-Fi was all we needed: we were coding on our own machines, with their full power, from across the city.',
 			'Then, when we suddenly made the finals, Legacy Siege was still running on this server. There was nothing to set up or redeploy. I opened the link and we were on stage. That one minute is the best argument I have for owning a server.',
-			'## Pros',
-			'It\'s always on: demos, bots, scrapers and agents keep running while you sleep. It costs almost nothing: you pay once for the hardware (or nothing, if it\'s a laptop you already own), then just for a laptop\'s worth of power. Your data stays on hardware you own. It travels with you: with Tailscale, any device on any Wi-Fi becomes a window into your full environment. And you learn a lot, because Linux, networking, SSH and systemd all stop being abstract the first time something breaks.',
-			'## Cons',
-			'You\'re the IT department: updates, a dead SSD and a full disk are all your problem. It depends on your home: a long power cut or an ISP outage takes it down, so it isn\'t a replacement for real production hosting. Security is on you, which is why I don\'t expose anything publicly and let Tailscale handle access. And an old laptop has limits: two cores won\'t train a model, so anything heavy goes to a stronger machine.',
+			'## Pros and cons',
+			'| Pros | Cons |\n| **Always on:** demos, bots and agents keep running while you sleep. | **You are the IT department:** updates, dead SSDs and full disks are your problem. |\n| **Nearly free:** an old laptop plus a laptop\'s worth of power. | **Home-dependent:** a power cut or ISP outage takes it down. Not real production hosting. |\n| **Your data stays on hardware you own.** | Your family will ask why the closed laptop on your desk is warm, humming and "definitely not off". |\n| **Goes everywhere:** with Tailscale, any device on any Wi-Fi reaches your full environment. |  |\n| **More capable than it looks:** 16 GB of RAM and an SSD go a long way for Node, Python and Docker. |  |\n| **You learn a lot:** Linux, networking, SSH and systemd stop being abstract the first time something breaks. |  |',
+			'Two cores won\'t train a model, so anything heavy goes to a stronger machine. For everything else, the left column wins.',
 			'## What it takes',
 			'Less than you think. Hardware: any laptop from the last ten years, ideally with 8 GB of RAM or more and an SSD. A cheap SATA SSD is the best $40 upgrade you can make. Software: Ubuntu Server LTS, the lid-switch override, Tailscale and SSH. Time: an afternoon. Start with what you have and upgrade once you know what you actually need.',
 			'If you have an old laptop in a drawer, you already have a server.',
@@ -308,7 +306,7 @@ export const LOGBOOK: LogEntry[] = [
 		body: [
 			'## The Story',
 			'Here\'s the thing about Agents in Context: Anwar and I forgot we\'d signed up. Between our internships it had slipped right out of our heads. When we finally looked at it, the night before, we realized it was a huge opportunity, so we fully locked in, ideating and planning until nearly 1 a.m.',
-			'The next morning we dragged ourselves awake, grabbed our monitors, forgot our ethernet cables, and drove to MongoDB\'s one-day hackathon in Toronto. Our desktop towers stayed at home: we connected to them over Tailscale and coded on them from the venue.',
+			'The next morning we dragged ourselves awake, grabbed our monitors, forgot our ethernet cables, and drove to MongoDB\'s one-day hackathon in Toronto. Our [desktop towers](/logbook/home-server-setup) stayed at home: we connected to them over Tailscale and coded on them from the venue.',
 			'We coded for so long that we looked up and it was 4:30 p.m. Submissions closed at 5. And at that exact moment we got kicked out of our room, because it was about to become a judging room. Small problem: the submission needed a 1-minute demo video, and we hadn\'t thought about it...',
 			'We tore down the whole setup, booked it downstairs, found an empty hallway, and recorded it off the tops of our heads. We got three takes before the deadline made the decision for us. Then judging started in 15 minutes, so we ran back upstairs to prep a 3-minute presentation we hadn\'t written.',
 			'Round 1 did not go well. We ran over time, left room for only 1 question, and walked off certain we\'d bombed. It felt so bad that we sat down and held a 30-minute post-mortem on everything we should have done differently, so that next time would go better. Then we honestly gave up. We only stayed to see who won and to support our friends (but also for the free food).',
